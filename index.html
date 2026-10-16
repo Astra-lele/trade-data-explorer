@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore trade, services, investment and economic data for 20 countries. Compare indicators, product composition, partners and long-run trends.">
+  <meta name="theme-color" content="#176b54">
+  <title>Trade Data Explorer</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23176b54'/%3E%3Ctext x='16' y='23' font-family='Arial' font-size='22' text-anchor='middle' fill='white'%3ET%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="src/style.css">
+  <script src="vendor/echarts.min.js" defer></script>
+  <script src="vendor/lucide.min.js" defer></script>
+  <script type="module" src="src/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to data</a>
+  <header class="topbar">
+    <button class="icon-button mobile-menu" id="menu-toggle" aria-label="Open navigation" title="Navigation"><i data-lucide="menu"></i></button>
+    <a class="brand" href="#"><span class="brand-icon"><i data-lucide="chart-no-axes-combined"></i></span><span>Trade Data <strong>Explorer</strong></span></a>
+    <button id="global-search" class="search-button"><i data-lucide="search"></i><span data-t="searchIndicators">Search indicators</span></button>
+    <span class="snapshot-label">DATA SNAPSHOT <b>16 OCT 2026</b></span>
+    <button id="language-toggle" class="language-button" title="Switch language">中文</button>
+  </header>
+  <div class="app-shell">
+    <aside id="sidebar" class="sidebar" aria-label="Data topics"></aside>
+    <main id="main" tabindex="-1">
+      <div id="page-heading"></div>
+      <section id="filters" aria-label="Data filters"></section>
+      <section id="module-controls" aria-label="Indicator selection"></section>
+      <div id="view-controls"></div>
+      <section id="results" aria-live="polite"><div class="loading"><span class="spinner"></span>Loading data snapshot...</div></section>
+      <section id="metadata"></section>
+      <footer class="page-footer"><span>Trade Data Explorer</span><span data-t="footer">20 economies · Source definitions retained</span><a href="https://github.com/Astra-lele/trade-data-explorer" target="_blank" rel="noopener">GitHub <i data-lucide="arrow-up-right"></i></a></footer>
+    </main>
+  </div>
+  <dialog id="catalog-dialog"><div id="catalog-content"></div></dialog>
+  <dialog id="country-dialog"><div id="country-content"></div></dialog>
+  <div id="toast" role="status"></div>
+  <noscript>This data explorer requires JavaScript. Source CSV files remain available in the GitHub repository.</noscript>
+</body>
+</html>

@@ -1,0 +1,6 @@
+__pycache__/
+.qa/
+node_modules/
+*.log
+tools/inspect_data.py
+tools/github_publish.py
