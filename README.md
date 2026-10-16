@@ -47,7 +47,7 @@ Rebuilding requires the separate source inventory folder `trade_development_mast
 ```sh
 python -m pip install -r requirements.txt
 python tools/build_data.py --source /path/to/trade_development_master_20261016
-python tools/build_labels.py
+python tools/build_labels.py --source /path/to/trade_development_master_20261016
 ```
 
 The scripts convert the prepared inventory into the website snapshot; they do not download or refresh upstream databases.

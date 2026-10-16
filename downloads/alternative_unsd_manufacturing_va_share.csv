@@ -1,0 +1,501 @@
+iso3,country,year,value,source,variable
+BEN,Benin,2000,18.016663460025068,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BEN,Benin,2001,18.561808375308107,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BEN,Benin,2002,18.97767667699892,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BEN,Benin,2003,18.875236891382436,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BEN,Benin,2004,17.64639673268589,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BEN,Benin,2005,18.15394988961442,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BEN,Benin,2006,17.54150422687516,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BEN,Benin,2007,15.706453496829662,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BEN,Benin,2008,13.874771473471128,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BEN,Benin,2009,13.73108582694989,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BEN,Benin,2010,13.280769566967852,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BEN,Benin,2011,12.906274580005123,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BEN,Benin,2012,11.6947763292907,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BEN,Benin,2013,11.879252518697223,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BEN,Benin,2014,11.344243147746473,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BEN,Benin,2015,10.906194041197624,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BEN,Benin,2016,10.835025589024124,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BEN,Benin,2017,10.382276028180291,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BEN,Benin,2018,10.21750565723133,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BEN,Benin,2019,9.184991651214146,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BEN,Benin,2020,10.611418930415045,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BEN,Benin,2021,10.430930572632391,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BEN,Benin,2022,10.817944978192081,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BEN,Benin,2023,11.128060135833636,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BEN,Benin,2024,11.243543557879848,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BFA,Burkina Faso,2000,16.245928430176075,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BFA,Burkina Faso,2001,15.902920375904372,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BFA,Burkina Faso,2002,15.8656500542319,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BFA,Burkina Faso,2003,16.671294571085543,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BFA,Burkina Faso,2004,16.36495141326029,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BFA,Burkina Faso,2005,14.582259514351046,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BFA,Burkina Faso,2006,15.121964356517688,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BFA,Burkina Faso,2007,15.489064213173412,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BFA,Burkina Faso,2008,14.003229213928813,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BFA,Burkina Faso,2009,14.717995611992333,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BFA,Burkina Faso,2010,13.149948875408782,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BFA,Burkina Faso,2011,12.624856564899975,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BFA,Burkina Faso,2012,11.372403020899558,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BFA,Burkina Faso,2013,11.388861291304872,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BFA,Burkina Faso,2014,12.067753330217794,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BFA,Burkina Faso,2015,12.80426803701975,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BFA,Burkina Faso,2016,12.301089075673277,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BFA,Burkina Faso,2017,11.437619911453353,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BFA,Burkina Faso,2018,11.67680141947293,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BFA,Burkina Faso,2019,11.44491041551379,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BFA,Burkina Faso,2020,10.863688163986609,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BFA,Burkina Faso,2021,10.760654005674333,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BFA,Burkina Faso,2022,12.159029588276654,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BFA,Burkina Faso,2023,11.981775077605272,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BFA,Burkina Faso,2024,11.291850213532895,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BGD,Bangladesh,2000,15.228627657035346,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BGD,Bangladesh,2001,15.605846876234697,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BGD,Bangladesh,2002,15.863594173464874,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BGD,Bangladesh,2003,15.804409449796792,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BGD,Bangladesh,2004,16.12918170230562,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BGD,Bangladesh,2005,16.534380821252128,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BGD,Bangladesh,2006,16.13462933664327,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BGD,Bangladesh,2007,17.05915606847129,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BGD,Bangladesh,2008,17.573832265709157,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BGD,Bangladesh,2009,18.212976232373354,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BGD,Bangladesh,2010,18.201180235297613,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BGD,Bangladesh,2011,18.487112405912214,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BGD,Bangladesh,2012,18.745802817883536,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BGD,Bangladesh,2013,19.578941753039825,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BGD,Bangladesh,2014,20.07809366032098,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BGD,Bangladesh,2015,20.326382003982545,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BGD,Bangladesh,2016,21.2529519529066,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BGD,Bangladesh,2017,21.001331085032582,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BGD,Bangladesh,2018,21.816079132171605,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BGD,Bangladesh,2019,22.166153790088178,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BGD,Bangladesh,2020,21.36256773721054,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BGD,Bangladesh,2021,22.06293365245448,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BGD,Bangladesh,2022,22.6302556198066,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BGD,Bangladesh,2023,23.1021082722916,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+BGD,Bangladesh,2024,22.645087862531092,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+CIV,Côte d'Ivoire,2000,22.449815649324048,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+CIV,Côte d'Ivoire,2001,17.4311047322761,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+CIV,Côte d'Ivoire,2002,16.849135941746578,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+CIV,Côte d'Ivoire,2003,16.32838684758096,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+CIV,Côte d'Ivoire,2004,17.380673555792914,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+CIV,Côte d'Ivoire,2005,16.999984754252846,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+CIV,Côte d'Ivoire,2006,15.785683767255787,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+CIV,Côte d'Ivoire,2007,16.87203973115846,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+CIV,Côte d'Ivoire,2008,15.788809898309038,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+CIV,Côte d'Ivoire,2009,17.66954561293959,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+CIV,Côte d'Ivoire,2010,13.723227430289631,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+CIV,Côte d'Ivoire,2011,12.20830662388708,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+CIV,Côte d'Ivoire,2012,12.8338767478127,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+CIV,Côte d'Ivoire,2013,14.137026244954509,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+CIV,Côte d'Ivoire,2014,14.073327681687719,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+CIV,Côte d'Ivoire,2015,12.34189868943558,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+CIV,Côte d'Ivoire,2016,13.523595607138365,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+CIV,Côte d'Ivoire,2017,12.198560754899715,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+CIV,Côte d'Ivoire,2018,12.195535599263442,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+CIV,Côte d'Ivoire,2019,13.343736839739915,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+CIV,Côte d'Ivoire,2020,12.93010006355927,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+CIV,Côte d'Ivoire,2021,14.501576542502024,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+CIV,Côte d'Ivoire,2022,13.835688819668132,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+CIV,Côte d'Ivoire,2023,14.591798353115257,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+CIV,Côte d'Ivoire,2024,14.734602594910532,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+COL,Colombia,2000,17.069993038258787,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+COL,Colombia,2001,17.338317123666684,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+COL,Colombia,2002,17.264912900267085,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+COL,Colombia,2003,17.568744037121636,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+COL,Colombia,2004,17.860373721712126,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+COL,Colombia,2005,17.56370715346591,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+COL,Colombia,2006,17.634299761405536,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+COL,Colombia,2007,17.856230798399643,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+COL,Colombia,2008,16.925799461250215,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+COL,Colombia,2009,16.167782205036605,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+COL,Colombia,2010,15.332325826804382,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+COL,Colombia,2011,14.551391381208395,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+COL,Colombia,2012,14.387704953179476,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+COL,Colombia,2013,13.839934857209329,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+COL,Colombia,2014,13.472865137487911,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+COL,Colombia,2015,13.659565556031609,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+COL,Colombia,2016,13.48526568484447,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+COL,Colombia,2017,12.563852873409209,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+COL,Colombia,2018,12.285313431237842,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+COL,Colombia,2019,12.068239785286814,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+COL,Colombia,2020,11.779461851550034,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+COL,Colombia,2021,12.372009700122458,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+COL,Colombia,2022,12.40514085146298,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+COL,Colombia,2023,12.044450039163031,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+COL,Colombia,2024,11.157755138518146,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+ETH,Ethiopia,2000,5.830265140286572,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+ETH,Ethiopia,2001,6.055428053822963,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+ETH,Ethiopia,2002,6.078553120914884,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+ETH,Ethiopia,2003,6.048467734912448,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+ETH,Ethiopia,2004,5.687229166684802,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+ETH,Ethiopia,2005,5.119871457380254,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+ETH,Ethiopia,2006,4.844570348507927,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+ETH,Ethiopia,2007,4.776885752970171,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+ETH,Ethiopia,2008,4.281796062641793,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+ETH,Ethiopia,2009,3.989832021596429,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+ETH,Ethiopia,2010,4.185713034685966,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+ETH,Ethiopia,2011,3.9610181022703808,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+ETH,Ethiopia,2012,3.6812162585272192,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+ETH,Ethiopia,2013,3.990833224705753,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+ETH,Ethiopia,2014,4.300837693901285,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+ETH,Ethiopia,2015,4.735115218158046,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+ETH,Ethiopia,2016,6.096569185502201,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+ETH,Ethiopia,2017,6.5818383155390885,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+ETH,Ethiopia,2018,6.138583368041796,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+ETH,Ethiopia,2019,5.851502312606962,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+ETH,Ethiopia,2020,5.553828789340824,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+ETH,Ethiopia,2021,4.79934538363485,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+ETH,Ethiopia,2022,4.376142487787976,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+ETH,Ethiopia,2023,4.605670230998453,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+ETH,Ethiopia,2024,4.501932955798715,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GHA,Ghana,2000,24.3875162741008,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GHA,Ghana,2001,24.284855976615017,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GHA,Ghana,2002,24.293975362776653,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GHA,Ghana,2003,23.957276092766847,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GHA,Ghana,2004,23.329872136921388,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GHA,Ghana,2005,23.038304583359416,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GHA,Ghana,2006,22.735040741617084,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GHA,Ghana,2007,20.766269407661166,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GHA,Ghana,2008,18.310151411104318,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GHA,Ghana,2009,16.27583646902707,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GHA,Ghana,2010,15.910459520315948,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GHA,Ghana,2011,15.70704045261652,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GHA,Ghana,2012,13.626031133141602,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GHA,Ghana,2013,12.19228304407309,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GHA,Ghana,2014,12.123734860452975,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GHA,Ghana,2015,12.113760316808818,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GHA,Ghana,2016,11.703643006141872,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GHA,Ghana,2017,10.91674589622006,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GHA,Ghana,2018,10.882704056909994,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GHA,Ghana,2019,10.859239268066032,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GHA,Ghana,2020,11.662271569307272,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GHA,Ghana,2021,11.656565766878376,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GHA,Ghana,2022,12.248790828207166,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GHA,Ghana,2023,11.913102184396752,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GHA,Ghana,2024,10.786511521545483,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GIN,Guinea,2000,2.993821707532731,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GIN,Guinea,2001,3.075509222238412,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GIN,Guinea,2002,4.099104771218104,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GIN,Guinea,2003,10.33671190829229,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GIN,Guinea,2004,10.02803274248102,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GIN,Guinea,2005,10.529093944795948,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GIN,Guinea,2006,11.798664122137405,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GIN,Guinea,2007,12.0901146476389,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GIN,Guinea,2008,13.510096809607772,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GIN,Guinea,2009,13.346291964550458,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GIN,Guinea,2010,11.289080849244584,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GIN,Guinea,2011,11.139581672057604,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GIN,Guinea,2012,11.409845512300677,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GIN,Guinea,2013,11.681031555592075,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GIN,Guinea,2014,11.978420515504501,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GIN,Guinea,2015,12.949753544459918,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GIN,Guinea,2016,11.589760071610963,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GIN,Guinea,2017,10.213545752617604,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GIN,Guinea,2018,9.473648509811161,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GIN,Guinea,2019,12.022662836674359,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GIN,Guinea,2020,9.290469916775537,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GIN,Guinea,2021,9.8528299184821,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GIN,Guinea,2022,10.117453326348855,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GIN,Guinea,2023,10.31073410592561,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GIN,Guinea,2024,10.101772015659707,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GNB,Guinea-Bissau,2000,13.917118718725074,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GNB,Guinea-Bissau,2001,13.45919431349224,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GNB,Guinea-Bissau,2002,13.651058883359365,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GNB,Guinea-Bissau,2003,14.087587209837455,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GNB,Guinea-Bissau,2004,13.884396547921844,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GNB,Guinea-Bissau,2005,13.130852245675289,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GNB,Guinea-Bissau,2006,12.87361646509935,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GNB,Guinea-Bissau,2007,11.650464648194937,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GNB,Guinea-Bissau,2008,12.761253704197307,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GNB,Guinea-Bissau,2009,12.243736357844828,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GNB,Guinea-Bissau,2010,11.621560376314873,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GNB,Guinea-Bissau,2011,11.324648319969754,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GNB,Guinea-Bissau,2012,12.397623010725788,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GNB,Guinea-Bissau,2013,12.851342730170941,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GNB,Guinea-Bissau,2014,12.702238752848444,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GNB,Guinea-Bissau,2015,11.21043293859171,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GNB,Guinea-Bissau,2016,11.897430368576483,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GNB,Guinea-Bissau,2017,11.156759461363304,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GNB,Guinea-Bissau,2018,15.427216286168772,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GNB,Guinea-Bissau,2019,13.63128323946391,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GNB,Guinea-Bissau,2020,8.87305894252315,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GNB,Guinea-Bissau,2021,9.08920244725834,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GNB,Guinea-Bissau,2022,9.446373259834202,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GNB,Guinea-Bissau,2023,12.105207346003306,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+GNB,Guinea-Bissau,2024,12.564469844082854,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+KEN,Kenya,2000,14.703419471063208,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+KEN,Kenya,2001,13.723940357643247,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+KEN,Kenya,2002,13.790198512386153,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+KEN,Kenya,2003,13.489656577697467,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+KEN,Kenya,2004,14.047816293520842,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+KEN,Kenya,2005,14.656760748259979,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+KEN,Kenya,2006,14.210409369950389,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+KEN,Kenya,2007,14.345363797282177,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+KEN,Kenya,2008,13.52700921155935,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+KEN,Kenya,2009,12.350576970277979,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+KEN,Kenya,2010,11.982289055348234,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+KEN,Kenya,2011,12.848002003022179,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+KEN,Kenya,2012,11.740324658742734,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+KEN,Kenya,2013,11.632872078530927,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+KEN,Kenya,2014,10.669029326763857,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+KEN,Kenya,2015,10.556288183584321,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+KEN,Kenya,2016,9.84909389043978,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+KEN,Kenya,2017,9.272172622643374,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+KEN,Kenya,2018,8.978807143617605,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+KEN,Kenya,2019,8.431453322677887,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+KEN,Kenya,2020,8.078018522306165,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+KEN,Kenya,2021,7.854104806209694,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+KEN,Kenya,2022,8.236680889999038,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+KEN,Kenya,2023,7.961228991200284,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+KEN,Kenya,2024,7.693566808117698,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MOZ,Mozambique,2000,16.65869961954437,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MOZ,Mozambique,2001,18.38672901261144,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MOZ,Mozambique,2002,14.214844946229332,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MOZ,Mozambique,2003,16.24811726597229,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MOZ,Mozambique,2004,17.001033446366762,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MOZ,Mozambique,2005,15.330470049518166,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MOZ,Mozambique,2006,16.10877148003051,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MOZ,Mozambique,2007,15.573166902847646,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MOZ,Mozambique,2008,13.181843545746554,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MOZ,Mozambique,2009,11.691989718918403,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MOZ,Mozambique,2010,11.072259180117678,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MOZ,Mozambique,2011,10.605660805920662,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MOZ,Mozambique,2012,9.585252005613164,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MOZ,Mozambique,2013,9.368136425944003,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MOZ,Mozambique,2014,9.175975217103202,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MOZ,Mozambique,2015,9.356092388261768,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MOZ,Mozambique,2016,9.129116473847967,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MOZ,Mozambique,2017,8.66740076144527,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MOZ,Mozambique,2018,9.541438181484141,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MOZ,Mozambique,2019,9.794219976536548,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MOZ,Mozambique,2020,9.356421631447231,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MOZ,Mozambique,2021,9.178308095350127,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MOZ,Mozambique,2022,9.22639399223585,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MOZ,Mozambique,2023,8.089142574124923,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MOZ,Mozambique,2024,7.308729732070048,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MWI,Malawi,2000,14.895043834300681,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MWI,Malawi,2001,13.38285174933636,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MWI,Malawi,2002,13.053432818204136,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MWI,Malawi,2003,14.503230403701911,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MWI,Malawi,2004,12.563533042391208,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MWI,Malawi,2005,11.591847358747945,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MWI,Malawi,2006,13.827407184097313,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MWI,Malawi,2007,15.49254401303403,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MWI,Malawi,2008,12.640874706449413,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MWI,Malawi,2009,11.191893283795526,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MWI,Malawi,2010,10.682230969921095,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MWI,Malawi,2011,11.25822812122079,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MWI,Malawi,2012,10.670224270761523,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MWI,Malawi,2013,10.955763475196138,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MWI,Malawi,2014,11.29268193504167,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MWI,Malawi,2015,11.65490304494132,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MWI,Malawi,2016,11.748868430431072,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MWI,Malawi,2017,12.040296832197114,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MWI,Malawi,2018,12.170985389423299,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MWI,Malawi,2019,12.287951395783132,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MWI,Malawi,2020,12.851835025836678,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MWI,Malawi,2021,12.667823346701216,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MWI,Malawi,2022,11.457191754337302,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MWI,Malawi,2023,13.64428523146728,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+MWI,Malawi,2024,12.58976677750071,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+PER,Peru,2000,16.695226289436587,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+PER,Peru,2001,17.03902079551378,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+PER,Peru,2002,16.946315389285775,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+PER,Peru,2003,16.89142035022923,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+PER,Peru,2004,17.99737651790623,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+PER,Peru,2005,18.179150240911078,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+PER,Peru,2006,18.00666578793756,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+PER,Peru,2007,18.011187284695932,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+PER,Peru,2008,17.742308867604798,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+PER,Peru,2009,16.678703173742235,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+PER,Peru,2010,16.993544565562104,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+PER,Peru,2011,16.38693268939429,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+PER,Peru,2012,16.593413456051305,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+PER,Peru,2013,16.290442194259942,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+PER,Peru,2014,15.357448196403034,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+PER,Peru,2015,15.081054083106224,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+PER,Peru,2016,14.536301648652922,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+PER,Peru,2017,14.097830774845141,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+PER,Peru,2018,14.306673616339454,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+PER,Peru,2019,14.013327761016301,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+PER,Peru,2020,13.285396969164843,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+PER,Peru,2021,13.177089680110022,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+PER,Peru,2022,13.500913580902408,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+PER,Peru,2023,13.65484761543875,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+PER,Peru,2024,13.103018779933793,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+RWA,Rwanda,2000,10.469798657718119,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+RWA,Rwanda,2001,9.88735919899875,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+RWA,Rwanda,2002,10.823529411764707,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+RWA,Rwanda,2003,9.837631327602674,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+RWA,Rwanda,2004,9.791332263242376,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+RWA,Rwanda,2005,9.517426273458446,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+RWA,Rwanda,2006,10.060975609756097,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+RWA,Rwanda,2007,9.05905905905906,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+RWA,Rwanda,2008,8.893280632411066,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+RWA,Rwanda,2009,8.926710663424801,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+RWA,Rwanda,2010,9.2534504391468,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+RWA,Rwanda,2011,9.413369713506139,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+RWA,Rwanda,2012,9.133599436487438,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+RWA,Rwanda,2013,7.479886931941728,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+RWA,Rwanda,2014,7.552750936698875,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+RWA,Rwanda,2015,7.567274697489617,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+RWA,Rwanda,2016,7.436811406351264,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+RWA,Rwanda,2017,8.468494330414812,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+RWA,Rwanda,2018,8.25459317585302,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+RWA,Rwanda,2019,8.846597462514417,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+RWA,Rwanda,2020,9.108867427568041,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+RWA,Rwanda,2021,9.472981987991993,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+RWA,Rwanda,2022,9.722948248823837,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+RWA,Rwanda,2023,9.032376747608536,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+RWA,Rwanda,2024,8.545473750924264,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SEN,Senegal,2000,22.897997570114004,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SEN,Senegal,2001,23.47796731470871,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SEN,Senegal,2002,24.356649485668832,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SEN,Senegal,2003,22.738530503930875,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SEN,Senegal,2004,23.30419375115233,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SEN,Senegal,2005,22.480090244069036,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SEN,Senegal,2006,21.69099951272316,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SEN,Senegal,2007,20.893014325144325,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SEN,Senegal,2008,19.418922702668564,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SEN,Senegal,2009,17.424606719305714,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SEN,Senegal,2010,17.274740422066547,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SEN,Senegal,2011,19.158329793066695,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SEN,Senegal,2012,18.687162992259125,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SEN,Senegal,2013,19.159535167435457,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SEN,Senegal,2014,18.85875423030858,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SEN,Senegal,2015,19.083892193377476,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SEN,Senegal,2016,18.291981272921028,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SEN,Senegal,2017,17.477833323718915,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SEN,Senegal,2018,17.02858495918521,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SEN,Senegal,2019,15.367199918804916,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SEN,Senegal,2020,13.881498717930963,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SEN,Senegal,2021,13.158893597029984,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SEN,Senegal,2022,13.066866434942884,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SEN,Senegal,2023,12.382358387158297,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SEN,Senegal,2024,12.02593822760639,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SLE,Sierra Leone,2000,3.3436769458110227,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SLE,Sierra Leone,2001,3.753620973761931,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SLE,Sierra Leone,2002,4.35172291946232,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SLE,Sierra Leone,2003,4.711656949417746,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SLE,Sierra Leone,2004,5.4901430942571565,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SLE,Sierra Leone,2005,6.406266660101602,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SLE,Sierra Leone,2006,8.181858442541232,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SLE,Sierra Leone,2007,7.913998179258977,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SLE,Sierra Leone,2008,7.927734054703733,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SLE,Sierra Leone,2009,7.149736711667802,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SLE,Sierra Leone,2010,7.132856761570287,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SLE,Sierra Leone,2011,7.304054637572674,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SLE,Sierra Leone,2012,6.695297039635801,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SLE,Sierra Leone,2013,5.766883762713582,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SLE,Sierra Leone,2014,5.586889667718958,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SLE,Sierra Leone,2015,5.909689843574633,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SLE,Sierra Leone,2016,6.6508510449012705,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SLE,Sierra Leone,2017,6.878314501331601,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SLE,Sierra Leone,2018,7.481742178798913,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SLE,Sierra Leone,2019,7.43584827455922,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SLE,Sierra Leone,2020,7.334573234477608,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SLE,Sierra Leone,2021,7.663962164826993,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SLE,Sierra Leone,2022,7.271261077721262,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SLE,Sierra Leone,2023,7.8985179489499,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+SLE,Sierra Leone,2024,7.171726296853459,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TGO,Togo,2000,12.590896141625285,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TGO,Togo,2001,12.227814364927722,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TGO,Togo,2002,12.667182445870665,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TGO,Togo,2003,13.315663337691353,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TGO,Togo,2004,11.906816253069346,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TGO,Togo,2005,12.952276879045382,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TGO,Togo,2006,16.360368561117635,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TGO,Togo,2007,20.66265444237178,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TGO,Togo,2008,17.321317334373642,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TGO,Togo,2009,16.324497186581254,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TGO,Togo,2010,15.853562058377351,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TGO,Togo,2011,15.385419390766453,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TGO,Togo,2012,12.835111282567086,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TGO,Togo,2013,15.68625388927973,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TGO,Togo,2014,17.650151286714767,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TGO,Togo,2015,16.36038368139246,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TGO,Togo,2016,14.632149282076018,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TGO,Togo,2017,14.25513290135334,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TGO,Togo,2018,14.529599886330866,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TGO,Togo,2019,14.022173609747176,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TGO,Togo,2020,15.198435022758657,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TGO,Togo,2021,13.860574860073264,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TGO,Togo,2022,14.487180987074808,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TGO,Togo,2023,14.513851188840277,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TGO,Togo,2024,14.193221181963766,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TZA,U.R. of Tanzania: Mainland,2000,10.615926160895883,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TZA,U.R. of Tanzania: Mainland,2001,10.186726212272303,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TZA,U.R. of Tanzania: Mainland,2002,10.093780024064353,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TZA,U.R. of Tanzania: Mainland,2003,10.108890041218762,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TZA,U.R. of Tanzania: Mainland,2004,9.947362472963043,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TZA,U.R. of Tanzania: Mainland,2005,9.905891831822519,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TZA,U.R. of Tanzania: Mainland,2006,10.175336809721879,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TZA,U.R. of Tanzania: Mainland,2007,9.603681770888384,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TZA,U.R. of Tanzania: Mainland,2008,9.517037858951221,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TZA,U.R. of Tanzania: Mainland,2009,9.432296842633983,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TZA,U.R. of Tanzania: Mainland,2010,9.390803302637451,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TZA,U.R. of Tanzania: Mainland,2011,10.317056774051284,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TZA,U.R. of Tanzania: Mainland,2012,10.196671709814455,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TZA,U.R. of Tanzania: Mainland,2013,9.849279530663999,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TZA,U.R. of Tanzania: Mainland,2014,9.88739278732102,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TZA,U.R. of Tanzania: Mainland,2015,8.569918928427176,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TZA,U.R. of Tanzania: Mainland,2016,8.516208790584692,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TZA,U.R. of Tanzania: Mainland,2017,8.354211450477106,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TZA,U.R. of Tanzania: Mainland,2018,8.590867835244067,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TZA,U.R. of Tanzania: Mainland,2019,8.424033246049262,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TZA,U.R. of Tanzania: Mainland,2020,8.285804927057272,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TZA,U.R. of Tanzania: Mainland,2021,7.761085804794145,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TZA,U.R. of Tanzania: Mainland,2022,7.698553388122191,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TZA,U.R. of Tanzania: Mainland,2023,7.578135037616842,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+TZA,U.R. of Tanzania: Mainland,2024,7.78538517769692,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+UGA,Uganda,2000,10.091162243316559,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+UGA,Uganda,2001,10.485967708152577,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+UGA,Uganda,2002,10.42586889522477,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+UGA,Uganda,2003,9.96280945684688,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+UGA,Uganda,2004,10.08660409418513,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+UGA,Uganda,2005,9.88765242842137,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+UGA,Uganda,2006,9.912299015112534,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+UGA,Uganda,2007,10.032418257047198,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+UGA,Uganda,2008,10.532635373858167,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+UGA,Uganda,2009,14.016077758578005,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+UGA,Uganda,2010,18.74778162775662,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+UGA,Uganda,2011,19.49294967832942,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+UGA,Uganda,2012,17.78297290914929,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+UGA,Uganda,2013,22.24606518360813,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+UGA,Uganda,2014,15.38457421568316,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+UGA,Uganda,2015,18.649630343373378,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+UGA,Uganda,2016,16.347727505990466,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+UGA,Uganda,2017,16.930068934228853,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+UGA,Uganda,2018,16.98491907935452,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+UGA,Uganda,2019,16.676223058443647,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+UGA,Uganda,2020,17.156349572464986,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+UGA,Uganda,2021,17.58236052138861,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+UGA,Uganda,2022,17.400125945694874,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+UGA,Uganda,2023,16.320375316421746,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+UGA,Uganda,2024,16.360332560143164,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+VNM,Viet Nam,2000,16.85636666239752,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+VNM,Viet Nam,2001,17.927947298172946,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+VNM,Viet Nam,2002,18.63200059365567,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+VNM,Viet Nam,2003,18.552777771734934,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+VNM,Viet Nam,2004,18.461959784385733,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+VNM,Viet Nam,2005,18.82324237447798,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+VNM,Viet Nam,2006,20.481901148276194,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+VNM,Viet Nam,2007,21.57191619955188,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+VNM,Viet Nam,2008,21.790599190487328,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+VNM,Viet Nam,2009,22.5145188332568,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+VNM,Viet Nam,2010,19.242353473997014,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+VNM,Viet Nam,2011,20.829927164021438,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+VNM,Viet Nam,2012,22.235586966705963,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+VNM,Viet Nam,2013,22.65063575129487,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+VNM,Viet Nam,2014,22.360773040164755,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+VNM,Viet Nam,2015,23.04971383274056,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+VNM,Viet Nam,2016,23.66861181747739,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+VNM,Viet Nam,2017,24.892060562778923,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+VNM,Viet Nam,2018,25.67255862224,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+VNM,Viet Nam,2019,26.123061724733702,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+VNM,Viet Nam,2020,26.249227503737426,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+VNM,Viet Nam,2021,26.804189866539364,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+VNM,Viet Nam,2022,26.947365331981732,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+VNM,Viet Nam,2023,26.21894947928117,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp
+VNM,Viet Nam,2024,26.593965551723315,UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp

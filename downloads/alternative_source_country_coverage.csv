@@ -1,0 +1,61 @@
+source,variable,iso3,first_year,last_year,nonmissing_2000_2023,has_2023,has_2024
+UN Tourism via OWID,international_tourist_arrivals,ETH,1995.0,2024.0,24,1,1
+UN Tourism via OWID,international_tourist_arrivals,KEN,1995.0,2017.0,18,0,0
+UN Tourism via OWID,international_tourist_arrivals,MWI,1995.0,2021.0,22,0,0
+UN Tourism via OWID,international_tourist_arrivals,MOZ,2001.0,2021.0,21,0,0
+UN Tourism via OWID,international_tourist_arrivals,RWA,2000.0,2021.0,18,0,0
+UN Tourism via OWID,international_tourist_arrivals,TZA,1995.0,2022.0,23,0,0
+UN Tourism via OWID,international_tourist_arrivals,UGA,1995.0,2021.0,22,0,0
+UN Tourism via OWID,international_tourist_arrivals,BEN,1995.0,2020.0,21,0,0
+UN Tourism via OWID,international_tourist_arrivals,BFA,1995.0,2024.0,24,1,1
+UN Tourism via OWID,international_tourist_arrivals,CIV,,,0,0,0
+UN Tourism via OWID,international_tourist_arrivals,GHA,1995.0,2022.0,23,0,0
+UN Tourism via OWID,international_tourist_arrivals,GIN,1996.0,2017.0,17,0,0
+UN Tourism via OWID,international_tourist_arrivals,GNB,2001.0,2019.0,16,0,0
+UN Tourism via OWID,international_tourist_arrivals,SEN,1995.0,2017.0,18,0,0
+UN Tourism via OWID,international_tourist_arrivals,SLE,1995.0,2021.0,22,0,0
+UN Tourism via OWID,international_tourist_arrivals,TGO,1995.0,2020.0,21,0,0
+UN Tourism via OWID,international_tourist_arrivals,VNM,1996.0,2015.0,5,0,0
+UN Tourism via OWID,international_tourist_arrivals,BGD,1995.0,2021.0,22,0,0
+UN Tourism via OWID,international_tourist_arrivals,COL,1995.0,2022.0,23,0,0
+UN Tourism via OWID,international_tourist_arrivals,PER,1995.0,2022.0,23,0,0
+UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp,ETH,2000.0,2024.0,24,1,1
+UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp,KEN,2000.0,2024.0,24,1,1
+UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp,MWI,2000.0,2024.0,24,1,1
+UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp,MOZ,2000.0,2024.0,24,1,1
+UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp,RWA,2000.0,2024.0,24,1,1
+UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp,TZA,2000.0,2024.0,24,1,1
+UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp,UGA,2000.0,2024.0,24,1,1
+UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp,BEN,2000.0,2024.0,24,1,1
+UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp,BFA,2000.0,2024.0,24,1,1
+UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp,CIV,2000.0,2024.0,24,1,1
+UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp,GHA,2000.0,2024.0,24,1,1
+UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp,GIN,2000.0,2024.0,24,1,1
+UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp,GNB,2000.0,2024.0,24,1,1
+UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp,SEN,2000.0,2024.0,24,1,1
+UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp,SLE,2000.0,2024.0,24,1,1
+UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp,TGO,2000.0,2024.0,24,1,1
+UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp,VNM,2000.0,2024.0,24,1,1
+UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp,BGD,2000.0,2024.0,24,1,1
+UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp,COL,2000.0,2024.0,24,1,1
+UNSD National Accounts Main Aggregates,manufacturing_value_added_share_gdp,PER,2000.0,2024.0,24,1,1
+IMF WEO October 2026,current_account_balance_share_gdp,ETH,2000.0,2024.0,24,1,1
+IMF WEO October 2026,current_account_balance_share_gdp,KEN,2000.0,2024.0,24,1,1
+IMF WEO October 2026,current_account_balance_share_gdp,MWI,2000.0,2024.0,24,1,1
+IMF WEO October 2026,current_account_balance_share_gdp,MOZ,2000.0,2024.0,24,1,1
+IMF WEO October 2026,current_account_balance_share_gdp,RWA,2000.0,2024.0,24,1,1
+IMF WEO October 2026,current_account_balance_share_gdp,TZA,2000.0,2024.0,24,1,1
+IMF WEO October 2026,current_account_balance_share_gdp,UGA,2000.0,2024.0,24,1,1
+IMF WEO October 2026,current_account_balance_share_gdp,BEN,2000.0,2024.0,24,1,1
+IMF WEO October 2026,current_account_balance_share_gdp,BFA,2000.0,2024.0,24,1,1
+IMF WEO October 2026,current_account_balance_share_gdp,CIV,2000.0,2024.0,24,1,1
+IMF WEO October 2026,current_account_balance_share_gdp,GHA,2000.0,2024.0,24,1,1
+IMF WEO October 2026,current_account_balance_share_gdp,GIN,2000.0,2024.0,24,1,1
+IMF WEO October 2026,current_account_balance_share_gdp,GNB,2000.0,2024.0,24,1,1
+IMF WEO October 2026,current_account_balance_share_gdp,SEN,2000.0,2024.0,24,1,1
+IMF WEO October 2026,current_account_balance_share_gdp,SLE,2000.0,2024.0,24,1,1
+IMF WEO October 2026,current_account_balance_share_gdp,TGO,2000.0,2024.0,24,1,1
+IMF WEO October 2026,current_account_balance_share_gdp,VNM,2000.0,2024.0,24,1,1
+IMF WEO October 2026,current_account_balance_share_gdp,BGD,2000.0,2024.0,24,1,1
+IMF WEO October 2026,current_account_balance_share_gdp,COL,2000.0,2024.0,24,1,1
+IMF WEO October 2026,current_account_balance_share_gdp,PER,2000.0,2024.0,24,1,1
