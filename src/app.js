@@ -43,7 +43,7 @@ function nav(){
 }
 function heading(){
   const title=state.topic==='workbench'?t('workbench'):state.topic==='sources'?t('sourceTitle'):topicLabel(state.topic);
-  const sub=state.topic==='workbench'?t('compareHint'):state.topic==='sources'?t('sourceSubtitle'):`${state.countries.map(countryLabel).join(' · ')}${state.countries.length===20?' · '+t('all'):''}`;
+  const sub=state.topic==='sources'?t('sourceSubtitle'):`${state.countries.map(countryLabel).join(' · ')}${state.countries.length===20?' · '+t('all'):''}`;
   $('#page-heading').innerHTML=`<div><div class="eyebrow">${t('snapshot')}</div><h1>${esc(title)}</h1><div class="page-summary">${esc(sub)}</div></div><div class="heading-tools">${iconButton('share',t('share'),'link')}${iconButton('focus',t('focus'),'maximize-2')}${iconButton('reset',t('reset'),'rotate-ccw')}</div>`;
 }
 function filters(){
