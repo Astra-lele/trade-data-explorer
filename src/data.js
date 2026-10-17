@@ -3,7 +3,11 @@ const cache=new Map();
 let baseURL=new URL('../',import.meta.url);
 export function setBaseURL(url){baseURL=new URL(url);cache.clear();}
 export async function readData(name){
-  if(!cache.has(name))cache.set(name,fetch(new URL('data/'+name,baseURL)).then(r=>{if(!r.ok)throw new Error(`${name}: ${r.status}`);return r.json();}).catch(e=>{cache.delete(name);throw e;}));
+  if(!cache.has(name))cache.set(name,fetch(new URL('data/'+name,baseURL)).then(async r=>{
+    if(!r.ok)throw new Error(`${name}: ${r.status}`);
+    if(name.endsWith('.gz'))return new Response(r.body.pipeThrough(new DecompressionStream('gzip'))).json();
+    return r.json();
+  }).catch(e=>{cache.delete(name);throw e;}));
   return cache.get(name);
 }
 export async function initialize(){
@@ -60,10 +64,13 @@ export function describe(spec){
   const units={value:'USD',share:`% of merchandise ${flow}s`,gdp:'% of GDP',percap:'USD/person',quantity:'tonnes',unit:'USD/tonne',china_value:'USD',china_share:'% of basket imports from China'};
   if(spec.type==='product'){
     const codes=canonicalCodes(spec.codes||[]),names=codes.map(c=>productName(c)).join(' + '),zh=codes.map(c=>productName(c,'zh')).join(' + ');
-    return {id:keyOf(spec),name:`${names||'Product basket'} ${flow}s`,zh:`${zh||'商品篮子'}${fzh}`,topic:'products',source:'baci',unit:units[spec.measure],frequency:'benchmark',years:catalog.benchmarkYears,spec,
+    return {id:keyOf(spec),name:`${names||'Product basket'} ${flow}s`,zh:`${zh||'商品篮子'}${fzh}`,topic:'products',source:'baci',unit:units[spec.measure],frequency:'annual',years:catalog.goodsYears,spec,
       note:'Sum of selected non-overlapping HS92 product codes. Shares use all recorded merchandise in the same country-year. A product-year with no recorded observation remains missing. Tonnes and unit value are available only for a single HS6 code. China-origin values are available for imports only.'};
   }
-  if(spec.type==='partner')return {id:keyOf(spec),name:`${flow==='import'?'Imports from':'Exports to'} ${partnerNames[spec.partner]||spec.partner}`,zh:`${flow==='import'?'来自':'面向'}${partnerNames[spec.partner]||spec.partner}的${fzh}`,topic:'partners',source:'baci',unit:units[spec.measure],frequency:'benchmark',years:catalog.benchmarkYears,spec,note:'Bilateral merchandise value. Shares use all recorded partners in the same country-year. No recorded partner observation remains missing.'};
+  if(spec.type==='partner'){
+    const annual=flow==='import'&&spec.partner==='CHN';
+    return {id:keyOf(spec),name:`${flow==='import'?'Imports from':'Exports to'} ${partnerNames[spec.partner]||spec.partner}`,zh:`${flow==='import'?'来自':'面向'}${partnerNames[spec.partner]||spec.partner}的${fzh}`,topic:'partners',source:'baci',unit:units[spec.measure],frequency:annual?'annual':'benchmark',years:annual?catalog.goodsYears:catalog.benchmarkYears,spec,note:annual?'Annual China-origin imports, summed from product-level china_v. Shares use all annual merchandise imports.':'Bilateral merchandise value. Shares use all recorded partners in the same country-year. No recorded partner observation remains missing.'};
+  }
   if(spec.type==='servicepartner')return {id:keyOf(spec),name:`${catalog.categories.services[spec.category]?.name||spec.category} ${flow}s ${flow==='import'?'from':'to'} ${partnerNames[spec.partner]||spec.partner}`,zh:`${catalog.categories.services[spec.category]?.zh||spec.category}${fzh} · ${partnerNames[spec.partner]||spec.partner}`,topic:'services',source:'bits',unit:spec.measure==='share'?`% of service category ${flow}s`:units[spec.measure],frequency:'annual',years:Array.from({length:24},(_,i)=>2000+i),spec,note:'Bilateral service flow. The share denominator is the corresponding BiTS country-category total, not the sum of the displayed partners. Bilateral coverage is incomplete for many country-category-years.'};
   return {id:keyOf(spec),name:'Unknown series',zh:'未知序列',unit:'',spec};
 }
@@ -84,7 +91,7 @@ export async function getSeries(spec,ids){
     if(['unit','quantity'].includes(spec.measure)&&!single)return Object.fromEntries(ids.map(i=>[i,[]]));
     if(['china_value','china_share'].includes(spec.measure)&&spec.flow!=='import')return Object.fromEntries(ids.map(i=>[i,[]]));
     await Promise.all(ids.map(async iso=>{
-      const data=await readData(`products/${iso}-${spec.flow}.json`);
+      const data=await readData(`products/${iso}-${spec.flow}.json.gz`);
       const groups=new Map();
       for(const [y,hs,v,q,ch] of data){
         if(!codes.some(c=>hs.startsWith(c)))continue;
@@ -102,6 +109,10 @@ export async function getSeries(spec,ids){
       });
     }));
   }else if(spec.type==='partner'){
+    if(spec.flow==='import'&&spec.partner==='CHN'){
+      for(const iso of ids)result[iso]=(series['baci.import.china.value']?.[iso]||[]).map(([y,v])=>[y,scaleValue(v,spec.measure,iso,y,goodsTotals[iso]?.import?.[y])]);
+      return result;
+    }
     const data=await readData('partners.json');
     const totals=new Map();
     for(const [iso,y,f,p,v]of data)if(f===spec.flow)totals.set(`${iso}.${y}`,(totals.get(`${iso}.${y}`)||0)+v);
@@ -123,7 +134,7 @@ export async function getComposition(kind,iso,year,flow,parent='S'){
     items=data.filter(r=>r[0]===iso&&r[1]===year&&r[2]===flow&&r[3]===kind).map(r=>({id:r[4],name:r[4],zh:catalog.categories[kind][r[4]]||r[4],value:r[5],spec:{type:'indicator',id:`baci.${flow}.${kind}.${r[4]}.share`}}));
     total=goodsTotals[iso]?.[flow]?.[year]??null;
   }else if(kind==='hs2'){
-    const data=await readData(`products/${iso}-${flow}.json`),grouped=new Map();
+    const data=await readData(`products/${iso}-${flow}.json.gz`),grouped=new Map();
     for(const [y,hs,v]of data)if(y===year){const key=hs.slice(0,2);grouped.set(key,(grouped.get(key)||0)+v);}
     items=[...grouped].map(([id,value])=>({id,name:productName(id),zh:productName(id,'zh'),value,spec:{type:'product',flow,codes:[id],measure:'share'}}));
     total=goodsTotals[iso]?.[flow]?.[year]??null;
@@ -160,4 +171,10 @@ export function compositionValues(comp,measure='share',limit=10,selected=[]){
 export function coverageFor(meta,ids){
   const data=series[meta.id]||{};
   return ids.map(iso=>{const p=data[iso]||[];return {iso,first:p[0]?.[0]??null,last:p.at(-1)?.[0]??null,n:p.length};});
+}
+
+export async function getTopProducts(iso,year,flow,level=6,limit=10){
+  const data=await readData(`top-products/${iso}-${flow}.json.gz`);
+  return data.filter(r=>r[0]===year&&r[1]===Number(level)&&r[2]<=limit)
+    .map(([y,l,rank,code,value,share])=>({iso,year:y,level:l,rank,code,value,share}));
 }

@@ -11,6 +11,7 @@ import zipfile
 
 import numpy as np
 import pandas as pd
+from build_goods import build_goods, YEARS, FLOW_FILES, COMPOSITION_FILE, MANIFEST_FILE
 
 ROOT = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser()
@@ -38,7 +39,7 @@ TOPICS = [
 ]
 SOURCES = {
     'wdi': {'name':'World Bank WDI','url':'https://databank.worldbank.org/source/world-development-indicators','note':'Annual series. Coverage differs by indicator. Original indicator codes are retained. National-accounts trade, merchandise customs statistics and balance-of-payments services are different concepts.'},
-    'baci': {'name':'CEPII BACI HS92, V202601','url':'https://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=37','note':'Six benchmark years: 2000, 2005, 2010, 2015, 2019, 2023. Original values in thousand US dollars converted to US dollars. Physical quantities are tonnes. No recorded product flow is not automatically treated as zero.'},
+    'baci': {'name':'CEPII BACI HS92, V202601','url':'https://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=37','note':'Product detail, composition and China-origin imports: annual 2000-2024 for all 20 countries. Other partner totals: 2000, 2005, 2010, 2015, 2019, 2023 only. Original thousand USD converted to current USD. Quantities are metric tonnes, offered only for single HS6 codes. Unit values are not pure price indices. An unrecorded product-year is not automatically zero.'},
     'wits': {'name':'WITS / UNCTAD classifications','url':'https://wits.worldbank.org/referencedata.html','note':'HS92 product mappings for stage of processing and technology groups. Unclassified products retained in denominators.'},
     'bits': {'name':'IMF BiTS research dataset','url':'https://data.imf.org/en/datasets/IMF:EXTERNAL_DATASET_CARDS/IMF:BiTS','note':'2000-2023. USD millions converted to USD. Country totals use world-total records where available; otherwise sums of available bilateral observations. Bilateral coverage can be incomplete. Parent categories and subcategories must not be added together.'},
     'ilo': {'name':'ILOSTAT','url':'https://rplumber.ilo.org/data/indicator/?id=EMP_TEMP_SEX_ECO_NB_A','note':'Manufacturing employment shares. Modelled and observed estimates remain separate. Industry is broader than manufacturing.'},
@@ -204,62 +205,8 @@ write_json(OUT/'ilo-observed-sources.json',ilo[['iso3','year','observed_source']
 
 gdp = macro.set_index(['iso3','year']).gdp_current_usd
 pop = macro.set_index(['iso3','year']).population
-PRODUCTS = {}
-COMPOSITION = []
-ALL_TOTALS = {}
-counts = {}
-for flow in ['import','export']:
-    df = pd.read_csv(IN / f'baci_{flow}_product_benchmark.csv.gz',dtype={'hs6':str,'hs2':str},low_memory=False)
-    df['hs6'] = df.hs6.str.zfill(6)
-    df['hs2'] = df.hs6.str[:2]
-    counts[flow+'_product_rows'] = len(df)
-    assert not df.duplicated(['iso3','year','hs6']).any()
-    df['value'] = df.value_thousand_usd*1000
-    df['china_value'] = df.china_v*1000 if 'china_v' in df else np.nan
-    for r in df[['hs6','description','stage','technology_group','narrow_light_consumer','broad_light_consumer']].drop_duplicates('hs6').itertuples(index=False,name=None):
-        PRODUCTS[r[0]] = [r[1],r[2] if pd.notna(r[2]) else 'Unclassified',r[3] if pd.notna(r[3]) else 'Other / unclassified',bool(r[4]) if pd.notna(r[4]) else False,bool(r[5]) if pd.notna(r[5]) else False]
-    total = df.groupby(['iso3','year']).value.sum()
-    for (iso,year),v in total.items():
-        ALL_TOTALS.setdefault(iso,{}).setdefault(flow,{})[str(year)] = float(v)
-    for iso,g in df.groupby('iso3'):
-        # Compact shards retain full numeric precision and every recorded product row.
-        write_json(OUT/'products'/f'{iso}-{flow}.json',rows(g[['year','hs6','value','quantity_tonnes','china_value']]))
-    for classification,col,translation in [('stage','stage',STAGE_ZH),('technology','technology_group',TECH_ZH)]:
-        work = df.assign(category=df[col].fillna('Unclassified' if classification=='stage' else 'Other / unclassified'))
-        grouped = work.groupby(['iso3','year','category'],as_index=False).value.sum()
-        for r in grouped.itertuples(index=False):
-            COMPOSITION.append([r.iso3,int(r.year),flow,classification,r.category,float(r.value)])
-        # A missing category inside a known country-year product universe has zero recorded value.
-        categories = list(translation)
-        index = pd.MultiIndex.from_tuples([(i,y,c) for i,y in total.index for c in categories],names=['iso3','year','category'])
-        grouped = grouped.set_index(['iso3','year','category']).reindex(index,fill_value=0).reset_index()
-        for cat,g in grouped.groupby('category'):
-            frame = g[['iso3','year','value']].copy()
-            denom = [total.loc[(r.iso3,r.year)] for r in frame.itertuples()]
-            frame['share'] = frame.value.to_numpy()/np.array(denom)*100
-            frame['gdp'] = frame.value.to_numpy()/np.array([gdp.get((r.iso3,r.year),np.nan) for r in frame.itertuples()])*100
-            label = f'{cat} {flow}s'
-            zh = translation.get(cat,cat)+('进口' if flow=='import' else '出口')
-            for measure,unit,col2 in [('value','USD','value'),('share','% of merchandise '+flow+'s','share'),('gdp','% of GDP','gdp')]:
-                id = f'baci.{flow}.{classification}.{cat}.{measure}'
-                add_series(id,label,zh,'composition',unit,'baci',frame,col2,
-                    'BACI HS92, WITS classification. Share denominator includes ALL recorded merchandise, including unclassified codes. Zero category value denotes no recorded trade in this category within an observed country-year.',frequency='benchmark')
-    for scope in ['narrow','broad']:
-        selected = df[df[scope+'_light_consumer'].eq(True)]
-        grouped = selected.groupby(['iso3','year'])[['value','china_value']].sum(min_count=1).reindex(total.index,fill_value=0).reset_index()
-        grouped['share'] = 100*grouped.value.to_numpy()/total.to_numpy()
-        grouped['gdp'] = 100*grouped.value.to_numpy()/np.array([gdp.get((r.iso3,r.year),np.nan) for r in grouped.itertuples()])
-        grouped['china_share'] = np.where(grouped.value>0,100*grouped.china_value/grouped.value,np.nan)
-        note = ('Narrow: WITS consumer goods in HS61, HS62, HS64 or HS6309. ' if scope=='narrow' else 'Broad: narrow set plus WITS consumer goods classified as low-technology manufactures, excluding HS01-24,27,30,84,85,87. ')
-        note += 'Research-defined basket, not an official statistical category. Narrow is contained in broad; do not add them together.'
-        for measure,unit in [('value','USD'),('share','% of merchandise '+flow+'s'),('gdp','% of GDP')]+([('china_share','% of basket imports from China')] if flow=='import' else []):
-            label = f'Light consumer goods {flow}s ({scope})'+(' - China share' if measure=='china_share' else '')
-            add_series(f'baci.{flow}.light.{scope}.{measure}',label,('轻工业消费品'+('进口' if flow=='import' else '出口')+'（'+('窄口径' if scope=='narrow' else '宽口径')+'）'+('中国来源占比' if measure=='china_share' else '')),'composition',unit,'baci',grouped,measure,note,frequency='benchmark')
-    print(f'Prepared {flow}: {len(df):,} product records',flush=True)
-
-write_json(OUT/'products.json',PRODUCTS)
-write_json(OUT/'goods-totals.json',ALL_TOTALS)
-write_json(OUT/'composition.json',COMPOSITION)
+counts, product_count = build_goods(IN, OUT, ROOT/'downloads', config.COUNTRIES, gdp, pop,
+                                  STAGE_ZH, TECH_ZH, add_series, write_json, rows)
 
 partners = pd.read_csv(IN/'merchandise_partner_benchmark.csv.gz')
 partners['value'] = partners.value_thousand_usd*1000
@@ -271,7 +218,8 @@ for flow in ['import','export']:
     total = g.groupby(['iso3','year']).value.sum()
     chn = g[g.partner_iso3.eq('CHN')].groupby(['iso3','year']).value.sum().reindex(total.index,fill_value=0)
     frame = (100*chn/total).rename('value').reset_index()
-    add_series(f'baci.{flow}.china.share',f'China share of merchandise {flow}s','中国占商品'+('进口' if flow=='import' else '出口')+'比重','partners','% of merchandise '+flow+'s','baci',frame,note='China bilateral merchandise value / all recorded bilateral merchandise value.',frequency='benchmark')
+    if flow == 'export':
+        add_series(f'baci.{flow}.china.share',f'China share of merchandise {flow}s','中国占商品出口比重','partners','% of merchandise '+flow+'s','baci',frame,note='China bilateral merchandise value / all recorded bilateral merchandise value.',frequency='benchmark')
     g['share'] = g.value/g.set_index(['iso3','year']).index.map(total)
     hhi = g.assign(value=g.share**2).groupby(['iso3','year']).value.sum().rename('value').reset_index()
     add_series(f'baci.{flow}.partner.hhi',f'{flow.capitalize()} partner concentration (HHI)','商品'+('进口' if flow=='import' else '出口')+'伙伴集中度（HHI）','partners','index (0-1)','baci',hhi,note='Sum of squared partner shares, using all recorded bilateral partners. Ranges from 0 to 1.',frequency='benchmark')
@@ -305,8 +253,14 @@ bits_balance('bits_service_balance_share_gdp','Services trade balance (BiTS)','�
 downloads = []
 download_dir = ROOT/'downloads'
 download_dir.mkdir(exist_ok=True)
-for path in sorted(IN.iterdir()):
-    if path.name.endswith(('.csv','.csv.gz')):
+prepared_files = [*FLOW_FILES.values(), COMPOSITION_FILE, 'alternative_imf_weo_current_account.csv',
+    'alternative_un_tourism_arrivals.csv', 'alternative_unsd_manufacturing_va_share.csv', 'country_list.csv',
+    'ilostat_manufacturing_employment.csv', 'imf_bits_bilateral_services.csv.gz', 'imf_bits_country_year_category.csv',
+    'merchandise_partner_benchmark.csv.gz', 'product_classification_hs92.csv',
+    'world_bank_country_year_panel.csv', 'world_bank_master_long.csv.gz']
+for name in prepared_files:
+    path = IN/name
+    if path.exists():
         target = download_dir/path.name
         shutil.copyfile(path,target)
         downloads.append({'name':path.name,'path':'downloads/'+path.name,'bytes':target.stat().st_size,'sha256':hashlib.sha256(target.read_bytes()).hexdigest()})
@@ -319,13 +273,19 @@ for name in ['master_variable_inventory.csv','country_variable_coverage.csv','so
     else:
         shutil.copyfile(path,target)
     downloads.append({'name':name,'path':'downloads/'+name,'bytes':target.stat().st_size,'sha256':hashlib.sha256(target.read_bytes()).hexdigest()})
+for name in [MANIFEST_FILE, 'light_consumer_broad_annual_2000_2024.csv', 'top_100_products_annual_2000_2024.csv.gz',
+             'baci_annual_country_year_coverage.csv', 'baci_annual_coverage_notes.txt']:
+    target = download_dir/name
+    downloads.append({'name':name,'path':'downloads/'+name,'bytes':target.stat().st_size,'sha256':hashlib.sha256(target.read_bytes()).hexdigest()})
 # Original source tables stay available; the website's calculations use the normalized series.
 write_json(OUT/'series.json',SERIES)
 catalog = {'version':'2026-10-16','sampleSize':20,'countries':[{'id':i,'name':n,'zh':COUNTRY_ZH[i],'region':r} for i,(n,r) in config.COUNTRIES.items()],
     'topics':[dict(zip(['id','name','zh','icon'],t)) for t in TOPICS], 'sources':SOURCES,'indicators':INDICATORS,
     'categories':{'stage':STAGE_ZH,'technology':TECH_ZH,'services':{code:{'name':name,'zh':SERVICE_ZH.get(code,name)} for code,name in config.BITS_CATEGORY_MAP.items()}},
     'productColumns':['year','hs6','value_usd','quantity_tonnes','china_value_usd'],
+    'topProductColumns':['year','hs_level','rank','code','value_usd','share_merchandise_pct'],
+    'productMetadataColumns':['description','stage','technology','broad_light_consumer'],
     'servicePartnerColumns':['year','flow','category','partner','value_usd','source','is_world_total'],
-    'benchmarkYears':config.BACI_YEARS,'downloads':downloads,'counts':counts}
+    'benchmarkYears':config.BACI_YEARS,'goodsYears':YEARS,'downloads':downloads,'counts':counts}
 write_json(OUT/'catalog.json',catalog)
-print(json.dumps({'indicators':len(INDICATORS),'observations':sum(m['n'] for m in INDICATORS),'products':len(PRODUCTS),'counts':counts},ensure_ascii=False),flush=True)
+print(json.dumps({'indicators':len(INDICATORS),'observations':sum(m['n'] for m in INDICATORS),'products':product_count,'counts':counts},ensure_ascii=False),flush=True)

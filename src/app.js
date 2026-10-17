@@ -7,7 +7,7 @@ const icon=name=>`<i data-lucide="${name}"></i>`;
 const button=(action,name,ico,cls='',attrs='')=>`<button data-action="${action}" class="${cls}" ${attrs}>${ico?icon(ico):''}${esc(name)}</button>`;
 const iconButton=(action,name,ico,attrs='')=>`<button data-action="${action}" class="icon-button" title="${esc(name)}" aria-label="${esc(name)}" ${attrs}>${icon(ico)}</button>`;
 const specOf=id=>({type:'indicator',id});
-const DEFAULT={topic:'scale',countries:['ETH','KEN','VNM','BGD'],start:2000,end:2023,year:2023,baseYear:2000,view:'trend',transform:'original',layout:'facets',latest:false,flow:'import',metric:'goods_services_imports_share_gdp',classification:'stage',category:'Capital goods',measure:'share',productCodes:['61'],productLevel:'2',productMeasure:'share',partner:'CHN',partnerMeasure:'share',serviceMode:'categories',serviceCategory:'S',servicePartner:'USA',topN:10,compositionYears:'single',changeKind:'difference',tableLayout:'long',language:'en',compareCompositions:[],compare:[specOf('goods_services_imports_share_gdp'),specOf('manufacturing_employment_share_modelled'),specOf('fdi_net_inflows_share_gdp')]};
+const DEFAULT={topic:'scale',countries:['ETH','KEN','VNM','BGD'],start:2000,end:2024,year:2024,baseYear:2000,view:'trend',transform:'original',layout:'facets',latest:false,flow:'import',metric:'goods_services_imports_share_gdp',classification:'stage',category:'Capital goods',measure:'share',productCodes:['61'],productLevel:'2',productMeasure:'share',partner:'CHN',partnerMeasure:'share',serviceMode:'categories',serviceCategory:'S',servicePartner:'USA',topN:10,compositionYears:'single',changeKind:'difference',tableLayout:'long',language:'en',compareCompositions:[],compare:[specOf('goods_services_imports_share_gdp'),specOf('manufacturing_employment_share_modelled'),specOf('fdi_net_inflows_share_gdp')]};
 let state=structuredClone(DEFAULT),catalog,currentRows=[],tableColumns=[],tablePage=0,tableSearch='',tableSort=null,currentDatasets=[],renderVersion=0,productQuery='',catalogQuery='',catalogTopic='all',countryDraft=[];
 let chartMap=new Map();
 const defaults={scale:'goods_services_imports_share_gdp',prices:'merchandise_import_volume_index_2015_100',investment:'fdi_net_inflows_share_gdp',economy:'manufacturing_employment_share_modelled'};
@@ -29,7 +29,7 @@ function loadState(){
   if(state.start>state.end)[state.start,state.end]=[state.end,state.start];
   if(!Array.isArray(state.productCodes))state.productCodes=['61'];
   state.productCodes=state.productCodes.filter(x=>/^\d{2}(\d{2})?(\d{2})?$/.test(x));
-  if(!['trend','ranking','change','table','composition','scatter'].includes(state.view))state.view='trend';
+  if(!['trend','ranking','change','table','composition','scatter','topProducts','valueQuantity'].includes(state.view))state.view='trend';
   if(!['original','rebase','gdp','percap','cumulative'].includes(state.transform))state.transform='original';
   if(!['import','export'].includes(state.flow))state.flow='import';
   setLanguage(state.language);
@@ -49,9 +49,12 @@ function heading(){
 function filters(){
   if(state.topic==='sources'){$('#filters').innerHTML='';return;}
   const countries=state.countries.length===20?`${t('all')} 20 ${t('countries')}`:state.countries.length>3?`${state.countries.length} ${t('countries')}`:state.countries.map(countryLabel).join(', ');
-  const annualYears=Array.from({length:30},(_,i)=>1995+i),benchmark=['composition','products','partners'].includes(state.topic);
-  const ys=benchmark?catalog.benchmarkYears:annualYears;
-  if(benchmark){if(!ys.includes(state.start))state.start=ys.find(y=>y>=state.start)??2023;if(!ys.includes(state.end))state.end=ys.filter(y=>y<=state.end).at(-1)??2000;if(state.start>state.end)state.start=state.end;if(!ys.includes(state.year))state.year=2023;}
+  const annualYears=Array.from({length:30},(_,i)=>1995+i),benchmark=state.topic==='partners'&&!(state.flow==='import'&&state.partner==='CHN'&&state.view!=='composition');
+  const ys=benchmark?catalog.benchmarkYears:['composition','products','partners'].includes(state.topic)?catalog.goodsYears:annualYears;
+  if(!ys.includes(state.start))state.start=ys.find(y=>y>=state.start)??ys.at(-1);
+  if(!ys.includes(state.end))state.end=ys.filter(y=>y<=state.end).at(-1)??ys[0];
+  if(state.start>state.end)state.start=state.end;
+  if(!ys.includes(state.year))state.year=ys.at(-1);
   $('#filters').innerHTML=`<div class="toolbar">${field(t('countries'),`<button id="country-picker" data-action="countries"><span>${esc(countries)}</span>${icon('chevron-down')}</button>`)}${field(t('period'),`<div class="range-fields">${select('start-year',ys,state.start,'aria-label="'+t('from')+'"')}<span class="range-dash">–</span>${select('end-year',ys,state.end,'aria-label="'+t('to')+'"')}</div>`)}${field(t('year'),select('reference-year',benchmark?catalog.benchmarkYears:ys,state.year,'aria-label="'+t('year')+'"'))}<div class="field grow"><span class="field-label">${t('coverage')}</span><span style="height:37px;display:flex;align-items:center;font-size:12px;color:var(--muted)">${state.countries.length} / 20 ${t('economies')}</span></div></div>`;
 }
 function genericMetricOptions(topic){return catalog.indicators.filter(m=>m.topic===topic).map(m=>[m.id,`${label(m)} · ${unitLabel(m.unit)}`]);}
@@ -68,19 +71,24 @@ function moduleControls(){
   }else if(['scale','prices','investment','economy'].includes(state.topic)){
     content=`<div class="module-bar"><div class="metric-selection">${field(t('indicator'),select('metric',genericMetricOptions(state.topic),state.metric,'class="wide-select" aria-label="'+t('indicator')+'"'),'wide')}${button('add-current',t('addCompare'),'plus')}${iconButton('catalog',t('searchIndicators'),'search')}</div></div>`;
   }else if(state.topic==='composition'){
-    const categories=state.classification==='light'?[['narrow',t('narrow')],['broad',t('broad')]]:state.classification==='hs2'?Object.entries(D.HS2).map(([c,n])=>[c,`${c} · ${n[language==='zh'?1:0]}`]):Object.entries(catalog.categories[state.classification]||{}).map(([c,zh])=>[c,language==='zh'?zh:c]);
+    const categories=state.classification==='light'?[['broad',t('broad')]]:state.classification==='hs2'?Object.entries(D.HS2).map(([c,n])=>[c,`${c} · ${n[language==='zh'?1:0]}`]):Object.entries(catalog.categories[state.classification]||{}).map(([c,zh])=>[c,language==='zh'?zh:c]);
     if(!categories.some(x=>x[0]===state.category))state.category=categories[0]?.[0]||'Capital goods';
-    content=`<div class="module-bar">${flow}${field(t('classification'),select('classification',[['stage',t('stage')],['technology',t('technology')],['hs2',t('hs2')],['light',t('light')]],state.classification))}${field(t('category'),select('category',categories,state.category),'grow')}${field(t('measure'),select('measure',measures,state.measure))}${button('add-current',t('addCompare'),'plus')}</div><p class="module-note">${t('benchmarkNote')}${state.classification==='light'?' '+(language==='zh'?'宽口径包含窄口径，两者不可相加。':'The broad basket includes the narrow basket. They are not additive.') :''}</p>`;
+    const allowed=state.classification==='light'?[...measures,['percap',t('percap')],...(state.flow==='import'?[['china_value',t('chinaValue')],['china_share',t('chinaShare')]]:[])]:measures;
+    if(!allowed.some(x=>x[0]===state.measure))state.measure='share';
+    content=`<div class="module-bar">${flow}${field(t('classification'),select('classification',[['stage',t('stage')],['technology',t('technology')],['hs2',t('hs2')],['light',t('light')]],state.classification))}${field(t('category'),select('category',categories,state.category),'grow')}${field(t('measure'),select('measure',allowed,state.measure))}${button('add-current',t('addCompare'),'plus')}</div><p class="module-note">${t('annualGoodsNote')}${state.classification==='light'?' '+t('broadNote'):''}</p>`;
   }else if(state.topic==='products'){
     const codes=state.productCodes;
     const extra=codes.length===1&&codes[0].length===6?[['quantity',t('quantity')],['unit',t('unitValue')]]:[];
     const china=state.flow==='import'?[['china_value',t('chinaValue')],['china_share',t('chinaShare')]]:[];
     const allowed=[...measures,['percap',t('percap')],...extra,...china];
     if(!allowed.some(x=>x[0]===state.productMeasure))state.productMeasure='share';
-    content=`<div class="module-bar">${flow}${field(t('productLevel'),select('product-level',[['2',t('hs2')],['4',t('hs4')],['6',t('hs6')]],state.productLevel))}${field(t('products'),`<input type="search" id="product-search" placeholder="${esc(t('productSearch'))}" value="${esc(productQuery)}" autocomplete="off">`,'grow')}${field(t('measure'),select('product-measure',allowed,state.productMeasure))}${button('add-current',t('addCompare'),'plus','',codes.length?'':'disabled')}</div><div class="basket">${codes.map(c=>`<span class="basket-item"><span>${c} · ${esc(D.productName(c,language))}</span>${iconButton('remove-product',t('remove'),'x',`data-code="${c}"`)}</span>`).join('')}</div><div id="product-results"></div><p class="module-note">${t('benchmarkNote')} ${t('productNote')}</p>`;
+    if(state.view==='topProducts'){
+      if(!['value','share'].includes(state.productMeasure))state.productMeasure='value';
+      content=`<div class="module-bar">${flow}${field(t('productLevel'),select('product-level',[['2',t('hs2')],['4',t('hs4')],['6',t('hs6')]],state.productLevel))}${field(t('measure'),select('product-measure',[['value',t('usd')],['share',t('shareTotal')]],state.productMeasure))}</div><p class="module-note">${t('topProductsNote')}</p>`;
+    }else content=`<div class="module-bar">${flow}${field(t('productLevel'),select('product-level',[['2',t('hs2')],['4',t('hs4')],['6',t('hs6')]],state.productLevel))}${field(t('products'),`<input type="search" id="product-search" placeholder="${esc(t('productSearch'))}" value="${esc(productQuery)}" autocomplete="off">`,'grow')}${state.view==='valueQuantity'?'':field(t('measure'),select('product-measure',allowed,state.productMeasure))}${button('add-current',t('addCompare'),'plus','',codes.length?'':'disabled')}</div><div class="basket">${codes.map(c=>`<span class="basket-item"><span>${c} · ${esc(D.productName(c,language))}</span>${iconButton('remove-product',t('remove'),'x',`data-code="${c}"`)}</span>`).join('')}</div><div id="product-results"></div><p class="module-note">${t('annualGoodsNote')} ${t('productNote')}</p>`;
   }else if(state.topic==='partners'){
     const partners=Object.entries(D.partnerNames).sort((a,b)=>a[1].localeCompare(b[1]));
-    content=`<div class="module-bar">${flow}${field(t('partner'),select('partner',partners,state.partner),'grow')}${field(t('measure'),select('partner-measure',[...measures,['percap',t('percap')]],state.partnerMeasure))}${button('add-current',t('addCompare'),'plus')}</div><p class="module-note">${t('benchmarkNote')}</p>`;
+    content=`<div class="module-bar">${flow}${field(t('partner'),select('partner',partners,state.partner),'grow')}${field(t('measure'),select('partner-measure',[...measures,['percap',t('percap')]],state.partnerMeasure))}${button('add-current',t('addCompare'),'plus')}</div><p class="module-note">${t('partnerNote')}</p>`;
   }else if(state.topic==='services'){
     const cats=Object.entries(catalog.categories.services).map(([c,m])=>[c,`${c} · ${label(m)}`]);
     const modes=[['categories',t('serviceTotals')],['partners',t('servicePartners')],['wdi','WDI / UN Tourism']];
@@ -95,14 +103,22 @@ function moduleControls(){
 function allowsComposition(){return state.topic==='workbench'?state.compareCompositions.length>0:state.topic==='composition'&&state.classification!=='light'||state.topic==='partners'||state.topic==='services'&&state.serviceMode!=='wdi';}
 function viewControls(){
   if(state.topic==='sources'){$('#view-controls').innerHTML='';return;}
-  const views=[['trend','chart-line'],['ranking','chart-bar'],['change','arrow-right-left'],...(allowsComposition()?[['composition','chart-bar-stacked']]:[]),...(state.topic==='workbench'?[['scatter','scatter-chart']]:[]),['table','table-2']];
+  const singleHS6=state.productCodes.length===1&&state.productCodes[0].length===6;
+  const views=[['trend','chart-line'],['ranking','chart-bar'],['change','arrow-right-left'],...(allowsComposition()?[['composition','chart-bar-stacked']]:[]),...(state.topic==='products'?[['topProducts','list-ordered'],...(singleHS6?[['valueQuantity','panels-top-left']]:[])]:[]),...(state.topic==='workbench'?[['scatter','scatter-chart']]:[]),['table','table-2']];
   if(!views.some(x=>x[0]===state.view))state.view='trend';
   let options='';
   if(state.view==='trend')options=`${select('layout',[['facets',t('facets')],['overlay',t('overlay')]],state.layout,'aria-label="'+t('layout')+'"')}${select('transform',[['original',t('original')],['rebase',t('rebase')],['gdp',t('gdp')],['percap',t('percap')],...(state.topic==='investment'?[['cumulative',language==='zh'?'已记录观测累计':'Cumulative recorded values']]:[])],state.transform,'aria-label="'+t('format')+'"')}${normalized()?select('base-year',Array.from({length:30},(_,i)=>1995+i),state.baseYear,'aria-label="'+t('baseYear')+'"'):''}`;
   if(state.view==='ranking'||state.view==='table')options+=`<label class="filter-inline"><input type="checkbox" id="latest" ${state.latest?'checked':''}>${t('latest')}</label>`;
   if(state.view==='change')options=select('change-kind',[['difference',t('difference')],['growth',t('growth')]],state.changeKind,'aria-label="'+t('measure')+'"');
   if(state.view==='table')options+=select('table-layout',[['long',language==='zh'?'完整时间序列':'Full time series'],['matrix',language==='zh'?'国家指标对照':'Country-by-indicator']],state.tableLayout,'aria-label="'+t('layout')+'"');
-  if(state.view==='composition')options=`${select('top-n',[[5,t('top5')],[10,t('top10')],[20,t('top20')],[0,t('allItems')]],state.topN,'aria-label="'+t('topN')+'"')}${select('composition-years',[['single',t('singleYear')],['both',t('startEnd')]],state.compositionYears,'aria-label="'+t('compareYears')+'"')}`;
+  if(state.view==='composition'){
+    if(![0,5,10,20].includes(state.topN))state.topN=10;
+    options=`${select('top-n',[[5,t('top5')],[10,t('top10')],[20,t('top20')],[0,t('allItems')]],state.topN,'aria-label="'+t('topN')+'"')}${select('composition-years',[['single',t('singleYear')],['both',t('startEnd')]],state.compositionYears,'aria-label="'+t('compareYears')+'"')}`;
+  }
+  if(state.view==='topProducts'){
+    if(![5,10,20,50,100].includes(state.topN))state.topN=10;
+    options=select('top-n',[5,10,20,50,100].map(n=>[n,language==='zh'?`前 ${n} 种`:`Top ${n}`]),state.topN,'aria-label="'+t('topN')+'"');
+  }
   if(state.view==='scatter'){
     const opt=state.compare.map((s,i)=>[i,label(D.describe(s))]);
     state.xIndex=Math.min(state.xIndex||0,Math.max(0,opt.length-1));state.yIndex=Math.min(state.yIndex??1,Math.max(0,opt.length-1));
@@ -113,7 +129,7 @@ function viewControls(){
 function activeSpecs(){
   if(state.topic==='workbench')return state.compare;
   if(['scale','prices','investment','economy'].includes(state.topic)||state.topic==='services'&&state.serviceMode==='wdi')return [specOf(state.metric)];
-  if(state.topic==='products')return state.productCodes.length?[productSpec()]:[];
+  if(state.topic==='products')return state.productCodes.length?(state.view==='valueQuantity'?['value','quantity','unit'].map(measure=>({...productSpec(),measure})):[productSpec()]):[];
   if(state.topic==='partners')return [partnerSpec()];
   if(state.topic==='services')return [serviceSpec()];
   if(state.topic==='composition'){
@@ -169,6 +185,53 @@ function showRanking(datasets){
     if(!valid.length){sec.element.innerHTML=empty();grid.append(sec.node);continue;}
     sec.element.style.height=Math.max(290,valid.length*28+65)+'px';addChart(grid,sec,rankOption(valid,meta.unit));
   }
+}
+async function showTopProducts(version){
+  const cases=await Promise.all(state.countries.map(async iso=>({iso,rows:await D.getTopProducts(iso,state.year,state.flow,Number(state.productLevel),state.topN)})));
+  if(version!==renderVersion)return;
+  const unit=state.productMeasure==='share'?`% of merchandise ${state.flow}s`:'USD';
+  currentRows=cases.flatMap(({rows})=>rows.map(r=>({iso3:r.iso,country:countryLabel(r.iso),year:r.year,flow:state.flow,hs_level:r.level,rank:r.rank,hs_code:r.code,product:D.productName(r.code,language),value_usd:r.value,share_merchandise_pct:r.share,source:catalog.sources.baci.name,source_url:catalog.sources.baci.url})));
+  currentDatasets=[];
+  $('#results').innerHTML=resultHeader(currentRows.length,`${state.year} · HS${state.productLevel} · ${t(state.flow)}`)+`<div class="chart-grid ${cases.length===1?'single':''}" id="chart-grid"></div>`;
+  for(const {iso,rows}of cases){
+    const sec=chartSection(`${countryLabel(iso)} · ${state.year}`,unit,'baci');
+    if(!rows.length){sec.element.innerHTML=empty();$('#chart-grid').append(sec.node);continue;}
+    const values=rows.map(r=>({name:`${r.code} · ${D.productName(r.code,language)}`,value:state.productMeasure==='share'?r.share:r.value,iso}));
+    sec.element.style.height=Math.max(320,rows.length*29+65)+'px';
+    const chart=addChart($('#chart-grid'),sec,rankOption(values,unit));
+    chart.on('click',p=>{const r=rows[p.dataIndex];if(r){state.productCodes=[r.code];state.productMeasure='value';state.view=r.level===6?'valueQuantity':'trend';render();}});
+  }
+  $('#metadata').innerHTML=`<div class="notice">${t('topProductsNote')} ${t('annualGoodsNote')}</div>`;icons();
+}
+
+async function showValueQuantity(version){
+  const measures=[['value','usd'],['quantity','quantity'],['unit','unitValue']];
+  const datasets=await Promise.all(measures.map(async ([measure])=>{
+    const spec={...productSpec(),measure};return {meta:D.describe(spec),data:await D.getSeries(spec,state.countries)};
+  }));
+  if(version!==renderVersion)return;
+  currentDatasets=datasets;
+  currentRows=state.countries.flatMap(iso=>{
+    const years=[...new Set(datasets.flatMap(d=>(d.data[iso]||[]).map(p=>p[0])))].filter(y=>y>=state.start&&y<=state.end).sort((a,b)=>a-b);
+    return years.map(year=>({iso3:iso,country:countryLabel(iso),year,flow:state.flow,hs6:state.productCodes[0],
+      product:D.productName(state.productCodes[0],language),value_usd:D.at(datasets[0].data[iso],year),
+      quantity_tonnes:D.at(datasets[1].data[iso],year),unit_value_usd_per_tonne:D.at(datasets[2].data[iso],year),
+      source:catalog.sources.baci.name,source_url:catalog.sources.baci.url}));
+  });
+  $('#results').innerHTML=resultHeader(currentRows.length,`${state.start}–${state.end} · HS${state.productCodes[0]}`)+`<div class="notice">${t('valueIdentity')} ${t('productNote')}</div><div id="quantity-panels"></div>`;
+  const years=Array.from({length:state.end-state.start+1},(_,i)=>state.start+i);
+  for(const iso of state.countries){
+    const group=document.createElement('section');group.className='quantity-country';
+    group.innerHTML=`<h2>${esc(countryLabel(iso))} · ${t(state.flow)}</h2><div class="quantity-grid"></div>`;
+    $('#quantity-panels').append(group);const grid=group.querySelector('.quantity-grid');
+    datasets.forEach(({meta,data},i)=>{
+      const points=(data[iso]||[]).filter(p=>p[0]>=state.start&&p[0]<=state.end);
+      const sec=chartSection(t(measures[i][1]),meta.unit,'baci');
+      if(!points.some(p=>D.isNumber(p[1]))){sec.element.innerHTML=empty();grid.append(sec.node);return;}
+      addChart(grid,sec,lineOption([{name:countryLabel(iso),points,color:countryColor(iso)}],years),'quantity-'+iso);
+    });
+  }
+  metadata(datasets);icons();
 }
 function showChange(datasets){
   currentRows=[];$('#results').innerHTML=`<div class="countline"><span>${state.start}–${state.end} · ${t('unitsNote')}</span>${button('download',t('download'),'download','text-button')}</div><div class="chart-grid ${datasets.length===1?'single':''}" id="chart-grid"></div>`;const grid=$('#chart-grid');
@@ -273,6 +336,8 @@ async function render(){
   if(state.topic==='sources'){sourcesPage();icons();return;}
   $('#results').innerHTML=`<div class="loading"><span class="spinner"></span>${t('loading')}</div>`;$('#metadata').innerHTML='';
   try{
+    if(state.view==='topProducts'){await showTopProducts(version);return;}
+    if(state.view==='valueQuantity'){await showValueQuantity(version);return;}
     if(state.view==='composition'){await showComposition(version);return;}
     const specs=activeSpecs();
     if(!specs.length){$('#results').innerHTML=empty(state.topic==='products'?t('selectProduct'):t('emptyWorkspace'),t('compareHint'));icons();return;}
@@ -311,7 +376,7 @@ function gotoTopic(topic){
   state.topic=topic;state.transform='original';state.latest=false;tableSearch='';productQuery='';
   if(defaults[topic])state.metric=defaults[topic];
   state.view=['composition','partners','services'].includes(topic)?'composition':'trend';
-  if(['composition','products','partners'].includes(topic)&&!catalog.benchmarkYears.includes(state.year))state.year=2023;
+  if(topic==='partners'&&!catalog.benchmarkYears.includes(state.year))state.year=2023;
   $('#sidebar').classList.remove('open');render();
 }
 
