@@ -1,6 +1,6 @@
-import * as D from './data.js';
-import {t,label,setLanguage,language,regionLabel,unitLabel,num,compact} from './i18n.js';
-import {esc,COLORS,countryColor,disposeCharts,mountChart,lineOption,rankOption,scatterOption,compositionOption,stackedOption,exportChart} from './charts.js';
+import * as D from './data.js?v=partners-en-20261016';
+import {t,label,setLanguage,language,regionLabel,unitLabel,num,compact} from './i18n.js?v=partners-en-20261016';
+import {esc,COLORS,countryColor,disposeCharts,mountChart,lineOption,rankOption,scatterOption,compositionOption,stackedOption,exportChart} from './charts.js?v=partners-en-20261016';
 
 const $=s=>document.querySelector(s);
 const icon=name=>`<i data-lucide="${name}"></i>`;
@@ -39,7 +39,7 @@ function countryLabel(iso){return label(D.countryById(iso)||{name:iso});}
 function topicLabel(id){return label(catalog.topics.find(x=>x.id===id)||{name:id});}
 function nav(){
   $('#sidebar').innerHTML=`<button class="nav-item ${state.topic==='workbench'?'active':''}" data-topic="workbench">${icon('columns-2')}<span>${t('workbench')}</span><span class="nav-count">${state.compare.length}</span></button><div class="nav-label">${t('topics')}</div>${catalog.topics.map(topic=>`<button class="nav-item ${state.topic===topic.id?'active':''}" data-topic="${topic.id}">${icon(topic.icon)}<span>${esc(label(topic))}</span></button>`).join('')}<div class="nav-label">${t('reference')}</div><button class="nav-item ${state.topic==='sources'?'active':''}" data-topic="sources">${icon('database')}<span>${t('sources')}</span></button><div class="sidebar-foot"><strong>20</strong>${t('economies')}<br><span>2000–2024</span></div>`;
-  $('[data-t="searchIndicators"]').textContent=t('searchIndicators');$('[data-t="footer"]').textContent=t('footer');$('#language-toggle').textContent=language==='en'?'中文':'EN';
+  $('[data-t="searchIndicators"]').textContent=t('searchIndicators');$('[data-t="footer"]').textContent=t('footer');
 }
 function heading(){
   const title=state.topic==='workbench'?t('workbench'):state.topic==='sources'?t('sourceTitle'):topicLabel(state.topic);
@@ -49,13 +49,13 @@ function heading(){
 function filters(){
   if(state.topic==='sources'){$('#filters').innerHTML='';return;}
   const countries=state.countries.length===20?`${t('all')} 20 ${t('countries')}`:state.countries.length>3?`${state.countries.length} ${t('countries')}`:state.countries.map(countryLabel).join(', ');
-  const annualYears=Array.from({length:30},(_,i)=>1995+i),benchmark=state.topic==='partners'&&!(state.flow==='import'&&state.partner==='CHN'&&state.view!=='composition');
-  const ys=benchmark?catalog.benchmarkYears:['composition','products','partners'].includes(state.topic)?catalog.goodsYears:annualYears;
+  const annualYears=Array.from({length:30},(_,i)=>1995+i);
+  const ys=state.topic==='partners'?catalog.partnerYears:['composition','products'].includes(state.topic)?catalog.goodsYears:annualYears;
   if(!ys.includes(state.start))state.start=ys.find(y=>y>=state.start)??ys.at(-1);
   if(!ys.includes(state.end))state.end=ys.filter(y=>y<=state.end).at(-1)??ys[0];
   if(state.start>state.end)state.start=state.end;
   if(!ys.includes(state.year))state.year=ys.at(-1);
-  $('#filters').innerHTML=`<div class="toolbar">${field(t('countries'),`<button id="country-picker" data-action="countries"><span>${esc(countries)}</span>${icon('chevron-down')}</button>`)}${field(t('period'),`<div class="range-fields">${select('start-year',ys,state.start,'aria-label="'+t('from')+'"')}<span class="range-dash">–</span>${select('end-year',ys,state.end,'aria-label="'+t('to')+'"')}</div>`)}${field(t('year'),select('reference-year',benchmark?catalog.benchmarkYears:ys,state.year,'aria-label="'+t('year')+'"'))}<div class="field grow"><span class="field-label">${t('coverage')}</span><span style="height:37px;display:flex;align-items:center;font-size:12px;color:var(--muted)">${state.countries.length} / 20 ${t('economies')}</span></div></div>`;
+  $('#filters').innerHTML=`<div class="toolbar">${field(t('countries'),`<button id="country-picker" data-action="countries"><span>${esc(countries)}</span>${icon('chevron-down')}</button>`)}${field(t('period'),`<div class="range-fields">${select('start-year',ys,state.start,'aria-label="'+t('from')+'"')}<span class="range-dash">–</span>${select('end-year',ys,state.end,'aria-label="'+t('to')+'"')}</div>`)}${field(t('year'),select('reference-year',ys,state.year,'aria-label="'+t('year')+'"'))}<div class="field grow"><span class="field-label">${t('coverage')}</span><span style="height:37px;display:flex;align-items:center;font-size:12px;color:var(--muted)">${state.countries.length} / 20 ${t('economies')}</span></div></div>`;
 }
 function genericMetricOptions(topic){return catalog.indicators.filter(m=>m.topic===topic).map(m=>[m.id,`${label(m)} · ${unitLabel(m.unit)}`]);}
 function productSpec(){return {type:'product',flow:state.flow,codes:D.canonicalCodes(state.productCodes),measure:state.productMeasure};}
@@ -71,7 +71,7 @@ function moduleControls(){
   }else if(['scale','prices','investment','economy'].includes(state.topic)){
     content=`<div class="module-bar"><div class="metric-selection">${field(t('indicator'),select('metric',genericMetricOptions(state.topic),state.metric,'class="wide-select" aria-label="'+t('indicator')+'"'),'wide')}${button('add-current',t('addCompare'),'plus')}${iconButton('catalog',t('searchIndicators'),'search')}</div></div>`;
   }else if(state.topic==='composition'){
-    const categories=state.classification==='light'?[['broad',t('broad')]]:state.classification==='hs2'?Object.entries(D.HS2).map(([c,n])=>[c,`${c} · ${n[language==='zh'?1:0]}`]):Object.entries(catalog.categories[state.classification]||{}).map(([c,zh])=>[c,language==='zh'?zh:c]);
+    const categories=state.classification==='light'?[['broad',t('broad')]]:state.classification==='hs2'?Object.entries(D.HS2).map(([c,n])=>[c,`${c} · ${n[0]}`]):Object.keys(catalog.categories[state.classification]||{}).map(c=>[c,c]);
     if(!categories.some(x=>x[0]===state.category))state.category=categories[0]?.[0]||'Capital goods';
     const allowed=state.classification==='light'?[...measures,['percap',t('percap')],...(state.flow==='import'?[['china_value',t('chinaValue')],['china_share',t('chinaShare')]]:[])]:measures;
     if(!allowed.some(x=>x[0]===state.measure))state.measure='share';
@@ -92,11 +92,11 @@ function moduleControls(){
   }else if(state.topic==='services'){
     const cats=Object.entries(catalog.categories.services).map(([c,m])=>[c,`${c} · ${label(m)}`]);
     const modes=[['categories',t('serviceTotals')],['partners',t('servicePartners')],['wdi','WDI / UN Tourism']];
-    const serviceShare=state.serviceMode==='partners'||state.view==='composition'?t('shareParent'):(language==='zh'?'占服务贸易总额（%）':'Share of total services (%)');
+    const serviceShare=state.serviceMode==='partners'||state.view==='composition'?t('shareParent'):'Share of total services (%)';
     content=`<div class="module-bar">${field(t('mode'),select('service-mode',modes,state.serviceMode))}${state.serviceMode==='wdi'?field(t('indicator'),select('metric',catalog.indicators.filter(m=>m.topic==='services'&&m.source!=='bits').map(m=>[m.id,`${label(m)} · ${unitLabel(m.unit)}`]),state.metric,'class="wide-select"'),'wide'):`${flow}${field(t('serviceCategory'),select('service-category',cats,state.serviceCategory),'grow')}${state.serviceMode==='partners'?field(t('partner'),select('service-partner',Object.entries(D.partnerNames),state.servicePartner),'grow'):''}${field(t('measure'),select('measure',[['share',serviceShare],['value',t('usd')],['gdp',t('gdp')]],state.measure))}`}${button('add-current',t('addCompare'),'plus')}</div><p class="module-note">${t('bitsNote')}</p>`;
   }
   if(state.topic==='workbench'&&state.compareCompositions.length)content+=`<div class="metric-list">${state.compareCompositions.map((s,i)=>`<div class="metric-row">${icon('chart-bar-stacked')}<div class="metric-text">${esc(compositionLabel(s))}<small>${t('composition')} · ${esc(unitLabel(s.measure==='share'?'%':s.measure==='gdp'?'% of GDP':s.measure==='percap'?'USD/person':'USD'))}</small></div>${iconButton('remove-composition',t('remove'),'x',`data-index="${i}"`)}</div>`).join('')}</div>`;
-  else if(allowsComposition()&&state.topic!=='workbench')content+=`<div style="padding-bottom:12px">${button('add-composition',language==='zh'?'将构成图加入工作台':'Add composition to workspace','chart-bar-stacked','text-button')}</div>`;
+  else if(allowsComposition()&&state.topic!=='workbench')content+=`<div style="padding-bottom:12px">${button('add-composition','Add composition to workspace','chart-bar-stacked','text-button')}</div>`;
   $('#module-controls').innerHTML=content;
   if(state.topic==='products')renderProductSearch();
 }
@@ -107,17 +107,17 @@ function viewControls(){
   const views=[['trend','chart-line'],['ranking','chart-bar'],['change','arrow-right-left'],...(allowsComposition()?[['composition','chart-bar-stacked']]:[]),...(state.topic==='products'?[['topProducts','list-ordered'],...(singleHS6?[['valueQuantity','panels-top-left']]:[])]:[]),...(state.topic==='workbench'?[['scatter','scatter-chart']]:[]),['table','table-2']];
   if(!views.some(x=>x[0]===state.view))state.view='trend';
   let options='';
-  if(state.view==='trend')options=`${select('layout',[['facets',t('facets')],['overlay',t('overlay')]],state.layout,'aria-label="'+t('layout')+'"')}${select('transform',[['original',t('original')],['rebase',t('rebase')],['gdp',t('gdp')],['percap',t('percap')],...(state.topic==='investment'?[['cumulative',language==='zh'?'已记录观测累计':'Cumulative recorded values']]:[])],state.transform,'aria-label="'+t('format')+'"')}${normalized()?select('base-year',Array.from({length:30},(_,i)=>1995+i),state.baseYear,'aria-label="'+t('baseYear')+'"'):''}`;
+  if(state.view==='trend')options=`${select('layout',[['facets',t('facets')],['overlay',t('overlay')]],state.layout,'aria-label="'+t('layout')+'"')}${select('transform',[['original',t('original')],['rebase',t('rebase')],['gdp',t('gdp')],['percap',t('percap')],...(state.topic==='investment'?[['cumulative','Cumulative recorded values']]:[])],state.transform,'aria-label="'+t('format')+'"')}${normalized()?select('base-year',Array.from({length:30},(_,i)=>1995+i),state.baseYear,'aria-label="'+t('baseYear')+'"'):''}`;
   if(state.view==='ranking'||state.view==='table')options+=`<label class="filter-inline"><input type="checkbox" id="latest" ${state.latest?'checked':''}>${t('latest')}</label>`;
   if(state.view==='change')options=select('change-kind',[['difference',t('difference')],['growth',t('growth')]],state.changeKind,'aria-label="'+t('measure')+'"');
-  if(state.view==='table')options+=select('table-layout',[['long',language==='zh'?'完整时间序列':'Full time series'],['matrix',language==='zh'?'国家指标对照':'Country-by-indicator']],state.tableLayout,'aria-label="'+t('layout')+'"');
+  if(state.view==='table')options+=select('table-layout',[['long','Full time series'],['matrix','Country-by-indicator']],state.tableLayout,'aria-label="'+t('layout')+'"');
   if(state.view==='composition'){
     if(![0,5,10,20].includes(state.topN))state.topN=10;
     options=`${select('top-n',[[5,t('top5')],[10,t('top10')],[20,t('top20')],[0,t('allItems')]],state.topN,'aria-label="'+t('topN')+'"')}${select('composition-years',[['single',t('singleYear')],['both',t('startEnd')]],state.compositionYears,'aria-label="'+t('compareYears')+'"')}`;
   }
   if(state.view==='topProducts'){
     if(![5,10,20,50,100].includes(state.topN))state.topN=10;
-    options=select('top-n',[5,10,20,50,100].map(n=>[n,language==='zh'?`前 ${n} 种`:`Top ${n}`]),state.topN,'aria-label="'+t('topN')+'"');
+    options=select('top-n',[5,10,20,50,100].map(n=>[n,`Top ${n}`]),state.topN,'aria-label="'+t('topN')+'"');
   }
   if(state.view==='scatter'){
     const opt=state.compare.map((s,i)=>[i,label(D.describe(s))]);
@@ -157,9 +157,9 @@ function showTrends(datasets){
   const selectedUnits=new Set(datasets.map(d=>d.meta.unit));
   let notice=normalized()?`<div class="notice">${t('baseMissing')}</div>`:'';
   const compatible=['rebase','gdp','percap'].includes(state.transform)||selectedUnits.size<=1;
-  if(['gdp','percap','cumulative'].includes(state.transform))notice+=`<div class="notice">${language==='zh'?'该转换仅适用于当年美元金额序列。份额、指数和人数序列不重复转换。':'This transformation applies only to current-dollar amount series. Existing shares, indexes and counts are not transformed.'}</div>`;
+  if(['gdp','percap','cumulative'].includes(state.transform))notice+=`<div class="notice">This transformation applies only to current-dollar amount series. Existing shares, indexes and counts are not transformed.</div>`;
   if(state.layout==='overlay'&&!compatible)notice+=`<div class="notice warning">${t('mixedUnits')}</div>`;
-  if(state.transform==='cumulative')notice+=`<div class="notice">${t('infrastructureNote')} ${language==='zh'?'累计FDI流量不等于FDI存量。':'Cumulative FDI flows are not FDI stocks.'}</div>`;
+  if(state.transform==='cumulative')notice+=`<div class="notice">${t('infrastructureNote')} Cumulative FDI flows are not FDI stocks.</div>`;
   $('#results').innerHTML=resultHeader(count,`${state.start}–${state.end}`)+notice+`<div class="chart-grid ${(datasets.length===1||state.layout==='overlay'&&compatible)&&state.countries.length<=6?'single':''}" id="chart-grid"></div>`;
   const grid=$('#chart-grid'),years=Array.from({length:state.end-state.start+1},(_,i)=>state.start+i);
   const linesFor=({meta,data})=>state.countries.map(iso=>({name:countryLabel(iso),iso,points:getVisiblePoints(data[iso],meta,iso),benchmark:meta.frequency==='benchmark',color:countryColor(iso)})).filter(x=>x.points.some(p=>D.isNumber(p[1])));
@@ -270,7 +270,7 @@ async function showComposition(version){
     // Choose the same displayed categories for every country; each country retains its own denominator.
     const totals=new Map(),defs=new Map();for(const c of comps)for(const r of c.items){totals.set(r.id,(totals.get(r.id)||0)+r.value);defs.set(r.id,r);}
     const keys=[...totals].sort((a,b)=>b[1]-a[1]).slice(0,state.topN||999).map(x=>x[0]);
-    const cats=keys.map(k=>defs.get(k));if([...defs.keys()].some(k=>!keys.includes(k)))cats.push({id:'__other',name:'Other',zh:'其他'});
+    const cats=keys.map(k=>defs.get(k));if([...defs.keys()].some(k=>!keys.includes(k)))cats.push({id:'__other',name:'Other'});
     const groups=comps.filter(c=>c.items.length).map(c=>{const values=D.compositionValues(c,measure,0);return {name:`${countryLabel(c.iso)}${years.length>1?' '+c.year:''}`,items:[...values.filter(r=>keys.includes(r.id)),{id:'__other',value:values.filter(r=>!keys.includes(r.id)).reduce((s,r)=>s+(r.value??0),0)}]};});
     if(!groups.length){grid.innerHTML=empty();}else{const sec=chartSection(t('compositionCountry'),unit,comps[0]?.source,t('zeroNote'),true);sec.element.style.height=Math.max(370,groups.length*29+95)+'px';addChart(grid,sec,stackedOption(groups,cats,unit));}
   }else for(const comp of comps){
@@ -281,7 +281,7 @@ async function showComposition(version){
     sec.element.style.height=Math.max(310,items.length*29+65)+'px';const chart=addChart(grid,sec,compositionOption(items,unit));
     chart.on('click',p=>{const item=items[p.dataIndex];if(item?.spec)addComparison(item.spec);});
   }
-  $('#metadata').innerHTML=`<details class="source-details"><summary>${t('sourceDetails')}</summary><div class="source-list"><div class="source-item"><b>${esc(catalog.sources[comps[0]?.source||'baci'].name)}</b>${esc(catalog.sources[comps[0]?.source||'baci'].note)}<p>${language==='zh'?'占比分母为所选国家、年份和方向的完整贸易总额或服务父类总额；前N类以外保留为“其他”。':'Shares use the full country-year-flow trade total, or the selected parent service category. Categories outside the top N remain in Other.'}</p></div></div></details>`;
+  $('#metadata').innerHTML=`<details class="source-details"><summary>${t('sourceDetails')}</summary><div class="source-list"><div class="source-item"><b>${esc(catalog.sources[comps[0]?.source||'baci'].name)}</b>${esc(catalog.sources[comps[0]?.source||'baci'].note)}<p>Shares use the full country-year-flow trade total, or the selected parent service category. Categories outside the top N remain in Other.</p></div></div></details>`;
   icons();
 }
 
@@ -332,6 +332,7 @@ function sourcesPage(){
 function renderDictionary(query){const ms=catalog.indicators.filter(m=>`${m.name} ${m.zh} ${m.id} ${m.code}`.toLowerCase().includes(query.toLowerCase()));$('#dictionary').innerHTML=`<div class="table-wrap"><table class="coverage-table"><thead><tr><th class="text">${t('indicator')}</th><th>${t('unit')}</th><th>${t('source')}</th><th>${t('sourceYears')}</th><th>${t('countries')}</th></tr></thead><tbody>${ms.map(m=>`<tr><td class="text">${esc(label(m))}<small style="display:block;color:var(--muted)">${esc(m.code||m.id)}</small></td><td>${esc(unitLabel(m.unit))}</td><td>${esc(catalog.sources[m.source]?.name||m.source)}</td><td>${m.years[0]??'—'}–${m.years.at(-1)??'—'}</td><td>${m.countries}/20</td></tr>`).join('')}</tbody></table></div>`;}
 
 async function render(){
+  state.language=language;
   const version=++renderVersion;disposeCharts();chartMap.clear();nav();heading();filters();moduleControls();viewControls();saveState();icons();
   if(state.topic==='sources'){sourcesPage();icons();return;}
   $('#results').innerHTML=`<div class="loading"><span class="spinner"></span>${t('loading')}</div>`;$('#metadata').innerHTML='';
@@ -376,7 +377,6 @@ function gotoTopic(topic){
   state.topic=topic;state.transform='original';state.latest=false;tableSearch='';productQuery='';
   if(defaults[topic])state.metric=defaults[topic];
   state.view=['composition','partners','services'].includes(topic)?'composition':'trend';
-  if(topic==='partners'&&!catalog.benchmarkYears.includes(state.year))state.year=2023;
   $('#sidebar').classList.remove('open');render();
 }
 
@@ -390,7 +390,7 @@ document.addEventListener('click',async event=>{
   else if(action==='countries-all'){countryDraft=catalog.countries.map(c=>c.id);renderCountries($('#country-search').value);}
   else if(action==='countries-clear'){countryDraft=[];renderCountries($('#country-search').value);}
   else if(action==='country-region'){countryDraft=[...new Set([...countryDraft,...catalog.countries.filter(c=>c.region===target.dataset.region).map(c=>c.id)])];renderCountries($('#country-search').value);}
-  else if(action==='countries-apply'){if(!countryDraft.length){toast(language==='zh'?'请至少选择一个国家':'Select at least one country');return;}state.countries=catalog.countries.filter(c=>countryDraft.includes(c.id)).map(c=>c.id);$('#country-dialog').close();render();}
+  else if(action==='countries-apply'){if(!countryDraft.length){toast('Select at least one country');return;}state.countries=catalog.countries.filter(c=>countryDraft.includes(c.id)).map(c=>c.id);$('#country-dialog').close();render();}
   else if(action==='close-countries')$('#country-dialog').close();
   else if(action==='catalog')showCatalog();
   else if(action==='close-catalog')$('#catalog-dialog').close();
@@ -424,7 +424,7 @@ document.addEventListener('change',event=>{
   render();
 });
 document.addEventListener('input',event=>{const el=event.target;if(el.id==='catalog-search'){catalogQuery=el.value;renderCatalog();}else if(el.id==='country-search')renderCountries(el.value);else if(el.id==='product-search'){productQuery=el.value;renderProductSearch();}else if(el.id==='table-search'){tableSearch=el.value;tablePage=0;renderTable();}else if(el.id==='dictionary-search')renderDictionary(el.value);});
-$('#global-search').addEventListener('click',showCatalog);$('#menu-toggle').addEventListener('click',()=>$('#sidebar').classList.toggle('open'));$('#language-toggle').addEventListener('click',()=>{state.language=language==='en'?'zh':'en';setLanguage(state.language);render();});
+$('#global-search').addEventListener('click',showCatalog);$('#menu-toggle').addEventListener('click',()=>$('#sidebar').classList.toggle('open'));
 window.addEventListener('hashchange',()=>{loadState();render();});
 window.addEventListener('keydown',e=>{if(e.key==='Escape'){$('#sidebar').classList.remove('open');document.body.classList.remove('focus-mode');}});
 

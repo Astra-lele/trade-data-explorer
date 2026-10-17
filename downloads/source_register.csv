@@ -1,6 +1,6 @@
 source,provider,url,coverage_used,role
 World Development Indicators,World Bank,https://api.worldbank.org/v2/,"2000-2024, annual","Macro scale, trade balances, price-volume indexes, service trade, FDI, infrastructure, and development outcomes"
-BACI HS92 V202601,CEPII,https://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=37,"2000, 2005, 2010, 2015, 2019, 2023",Bilateral HS6 merchandise values and physical quantities
+BACI HS92 V202601,CEPII,https://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=37,"2000-2024, annual bilateral flows; benchmark and annual product panels",Bilateral HS6 merchandise values and physical quantities
 WITS reference classifications,World Bank / UNCTAD,https://wits.worldbank.org/referencedata.html,HS92 concordances and product classifications,Stages of processing and technology/product groups
 BiTS Research Dataset,International Monetary Fund,https://data.imf.org/en/datasets/IMF:EXTERNAL_DATASET_CARDS/IMF:BiTS,"2000-2023, annual bilateral flows",Bilateral service exports and imports by EBOPS category
 International Trade in Services (ITS),International Monetary Fund,https://data.imf.org/en/datasets/IMF.RES:ITS,Reference only; 1970-2014,Email-provided historical service-trade source; superseded here by newer BiTS and WDI series

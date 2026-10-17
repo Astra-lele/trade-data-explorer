@@ -140,7 +140,7 @@ def build_goods(source, out, downloads, countries, gdp, pop, stages, technologie
     public.update({'source': 'CEPII BACI', 'value_unit': '1000 current USD in source CSV; current USD in browser and derived tables',
                    'quantity_unit': 'metric tonnes; single HS6 only', 'counts': counts, 'light_consumer_definition': BROAD_NOTE,
                    'top_products': 'Top 100 per country, year, flow and HS level (2/4/6); ranks by current USD, ties by HS code',
-                   'partner_coverage': 'All-partner totals remain six benchmark years. China-origin imports are annual.',
+                   'partner_coverage': 'Annual 2000-2024 for imports and exports; validated by build_data.py.',
                    'sha256': {name: hashlib.sha256((source / name).read_bytes()).hexdigest() for name in [*FLOW_FILES.values(), COMPOSITION_FILE]}})
     write_json(downloads / MANIFEST_FILE, public)
     return counts, len(products)

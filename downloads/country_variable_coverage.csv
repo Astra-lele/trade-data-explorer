@@ -39,46 +39,46 @@ BACI,hs6_import_value_quantity_unit_value,TGO,Togo,West Africa,2000.0,2023.0,6,6
 BACI,hs6_import_value_quantity_unit_value,TZA,Tanzania,East Africa,2000.0,2023.0,6,6,100.0,Benchmark years
 BACI,hs6_import_value_quantity_unit_value,UGA,Uganda,East Africa,2000.0,2023.0,6,6,100.0,Benchmark years
 BACI,hs6_import_value_quantity_unit_value,VNM,Vietnam,Asia comparator,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_export_partners,BEN,Benin,West Africa,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_export_partners,BFA,Burkina Faso,West Africa,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_export_partners,BGD,Bangladesh,Asia comparator,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_export_partners,CIV,Cote d'Ivoire,West Africa,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_export_partners,COL,Colombia,South America comparator,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_export_partners,ETH,Ethiopia,East Africa,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_export_partners,GHA,Ghana,West Africa,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_export_partners,GIN,Guinea,West Africa,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_export_partners,GNB,Guinea-Bissau,West Africa,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_export_partners,KEN,Kenya,East Africa,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_export_partners,MOZ,Mozambique,East Africa,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_export_partners,MWI,Malawi,East Africa,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_export_partners,PER,Peru,South America comparator,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_export_partners,RWA,Rwanda,East Africa,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_export_partners,SEN,Senegal,West Africa,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_export_partners,SLE,Sierra Leone,West Africa,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_export_partners,TGO,Togo,West Africa,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_export_partners,TZA,Tanzania,East Africa,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_export_partners,UGA,Uganda,East Africa,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_export_partners,VNM,Vietnam,Asia comparator,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_import_partners,BEN,Benin,West Africa,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_import_partners,BFA,Burkina Faso,West Africa,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_import_partners,BGD,Bangladesh,Asia comparator,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_import_partners,CIV,Cote d'Ivoire,West Africa,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_import_partners,COL,Colombia,South America comparator,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_import_partners,ETH,Ethiopia,East Africa,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_import_partners,GHA,Ghana,West Africa,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_import_partners,GIN,Guinea,West Africa,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_import_partners,GNB,Guinea-Bissau,West Africa,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_import_partners,KEN,Kenya,East Africa,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_import_partners,MOZ,Mozambique,East Africa,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_import_partners,MWI,Malawi,East Africa,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_import_partners,PER,Peru,South America comparator,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_import_partners,RWA,Rwanda,East Africa,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_import_partners,SEN,Senegal,West Africa,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_import_partners,SLE,Sierra Leone,West Africa,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_import_partners,TGO,Togo,West Africa,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_import_partners,TZA,Tanzania,East Africa,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_import_partners,UGA,Uganda,East Africa,2000.0,2023.0,6,6,100.0,Benchmark years
-BACI,merchandise_import_partners,VNM,Vietnam,Asia comparator,2000.0,2023.0,6,6,100.0,Benchmark years
+BACI,merchandise_export_partners,BEN,Benin,West Africa,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_export_partners,BFA,Burkina Faso,West Africa,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_export_partners,BGD,Bangladesh,Asia comparator,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_export_partners,CIV,Cote d'Ivoire,West Africa,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_export_partners,COL,Colombia,South America comparator,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_export_partners,ETH,Ethiopia,East Africa,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_export_partners,GHA,Ghana,West Africa,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_export_partners,GIN,Guinea,West Africa,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_export_partners,GNB,Guinea-Bissau,West Africa,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_export_partners,KEN,Kenya,East Africa,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_export_partners,MOZ,Mozambique,East Africa,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_export_partners,MWI,Malawi,East Africa,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_export_partners,PER,Peru,South America comparator,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_export_partners,RWA,Rwanda,East Africa,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_export_partners,SEN,Senegal,West Africa,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_export_partners,SLE,Sierra Leone,West Africa,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_export_partners,TGO,Togo,West Africa,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_export_partners,TZA,Tanzania,East Africa,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_export_partners,UGA,Uganda,East Africa,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_export_partners,VNM,Vietnam,Asia comparator,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_import_partners,BEN,Benin,West Africa,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_import_partners,BFA,Burkina Faso,West Africa,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_import_partners,BGD,Bangladesh,Asia comparator,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_import_partners,CIV,Cote d'Ivoire,West Africa,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_import_partners,COL,Colombia,South America comparator,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_import_partners,ETH,Ethiopia,East Africa,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_import_partners,GHA,Ghana,West Africa,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_import_partners,GIN,Guinea,West Africa,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_import_partners,GNB,Guinea-Bissau,West Africa,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_import_partners,KEN,Kenya,East Africa,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_import_partners,MOZ,Mozambique,East Africa,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_import_partners,MWI,Malawi,East Africa,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_import_partners,PER,Peru,South America comparator,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_import_partners,RWA,Rwanda,East Africa,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_import_partners,SEN,Senegal,West Africa,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_import_partners,SLE,Sierra Leone,West Africa,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_import_partners,TGO,Togo,West Africa,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_import_partners,TZA,Tanzania,East Africa,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_import_partners,UGA,Uganda,East Africa,2000.0,2024.0,25,25,100.0,Annual
+BACI,merchandise_import_partners,VNM,Vietnam,Asia comparator,2000.0,2024.0,25,25,100.0,Annual
 Derived from WDI,goods_services_imports_per_capita_usd,BEN,Benin,West Africa,2000.0,2024.0,25,25,100.0,Annual
 Derived from WDI,goods_services_imports_per_capita_usd,BFA,Burkina Faso,West Africa,2000.0,2024.0,25,25,100.0,Annual
 Derived from WDI,goods_services_imports_per_capita_usd,BGD,Bangladesh,Asia comparator,2000.0,2024.0,25,25,100.0,Annual

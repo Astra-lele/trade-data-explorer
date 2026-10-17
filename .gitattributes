@@ -1,2 +1,2 @@
 # Preserve prepared downloads byte-for-byte, including their recorded hashes.
-downloads/** -text
+downloads/** -text whitespace=cr-at-eol

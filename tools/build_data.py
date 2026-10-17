@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import gzip
 import importlib.util
 import json
 from pathlib import Path
@@ -16,6 +17,7 @@ from build_goods import build_goods, YEARS, FLOW_FILES, COMPOSITION_FILE, MANIFE
 ROOT = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser()
 parser.add_argument('--source', type=Path, default=ROOT.parent / 'trade_development_master_20261016')
+parser.add_argument('--private-catalog', type=Path, help='Optional bilingual catalog outside this public repository')
 args = parser.parse_args()
 SOURCE = args.source
 IN = SOURCE / 'data' / 'processed'
@@ -39,7 +41,7 @@ TOPICS = [
 ]
 SOURCES = {
     'wdi': {'name':'World Bank WDI','url':'https://databank.worldbank.org/source/world-development-indicators','note':'Annual series. Coverage differs by indicator. Original indicator codes are retained. National-accounts trade, merchandise customs statistics and balance-of-payments services are different concepts.'},
-    'baci': {'name':'CEPII BACI HS92, V202601','url':'https://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=37','note':'Product detail, composition and China-origin imports: annual 2000-2024 for all 20 countries. Other partner totals: 2000, 2005, 2010, 2015, 2019, 2023 only. Original thousand USD converted to current USD. Quantities are metric tonnes, offered only for single HS6 codes. Unit values are not pure price indices. An unrecorded product-year is not automatically zero.'},
+    'baci': {'name':'CEPII BACI HS92, V202601','url':'https://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=37','note':'Product detail, composition and all recorded merchandise partners: annual 2000-2024 for all 20 countries, imports and exports. Original thousand USD converted to current USD. Quantities are metric tonnes, offered only for single HS6 codes. Unit values are not pure price indices. Unrecorded product or partner observations remain missing. Historical territory definitions follow the source; partner labels use the latest recorded name.'},
     'wits': {'name':'WITS / UNCTAD classifications','url':'https://wits.worldbank.org/referencedata.html','note':'HS92 product mappings for stage of processing and technology groups. Unclassified products retained in denominators.'},
     'bits': {'name':'IMF BiTS research dataset','url':'https://data.imf.org/en/datasets/IMF:EXTERNAL_DATASET_CARDS/IMF:BiTS','note':'2000-2023. USD millions converted to USD. Country totals use world-total records where available; otherwise sums of available bilateral observations. Bilateral coverage can be incomplete. Parent categories and subcategories must not be added together.'},
     'ilo': {'name':'ILOSTAT','url':'https://rplumber.ilo.org/data/indicator/?id=EMP_TEMP_SEX_ECO_NB_A','note':'Manufacturing employment shares. Modelled and observed estimates remain separate. Industry is broader than manufacturing.'},
@@ -208,21 +210,48 @@ pop = macro.set_index(['iso3','year']).population
 counts, product_count = build_goods(IN, OUT, ROOT/'downloads', config.COUNTRIES, gdp, pop,
                                   STAGE_ZH, TECH_ZH, add_series, write_json, rows)
 
-partners = pd.read_csv(IN/'merchandise_partner_benchmark.csv.gz')
+partner_file = 'merchandise_partner_annual_2000_2024.csv.gz'
+partners = pd.read_csv(IN/partner_file)
+partner_keys = ['iso3','year','trade_flow','partner_iso3']
+assert not partners.duplicated(partner_keys).any()
+assert partners[partner_keys+['partner_name','value_thousand_usd']].notna().all().all()
 partners['value'] = partners.value_thousand_usd*1000
-partner_names = dict(partners[['partner_iso3','partner_name']].drop_duplicates().itertuples(index=False,name=None))
-write_json(OUT/'partners.json',rows(partners[['iso3','year','trade_flow','partner_iso3','value']]))
+assert partners.value.ge(0).all() and np.isfinite(partners.value).all()
+partner_groups = partners.groupby(['iso3','year','trade_flow'])
+coverage = partner_groups.agg(partner_records=('partner_iso3','size'),value_usd=('value','sum'),share_sum_pct=('share_reporter_trade_pct','sum')).sort_index()
+expected = pd.MultiIndex.from_product([sorted(config.COUNTRIES),YEARS,['export','import']],names=coverage.index.names)
+assert coverage.index.equals(expected), 'Incomplete annual partner coverage'
+assert np.allclose(coverage.share_sum_pct,100,atol=1e-8,rtol=0)
+goods_totals = json.loads((OUT/'goods-totals.json').read_text(encoding='utf-8'))
+assert np.allclose(coverage.value_usd,[goods_totals[i][f][str(y)] for i,y,f in coverage.index],rtol=1e-9,atol=1e-3)
+partner_denominators = partners.set_index(['iso3','year','trade_flow']).index.map(coverage.value_usd)
+assert np.allclose(partners.share_reporter_trade_pct,100*partners.value/partner_denominators,rtol=1e-9,atol=1e-8)
+partner_names = dict(partners.sort_values('year')[['partner_iso3','partner_name']].drop_duplicates('partner_iso3',keep='last').itertuples(index=False,name=None))
+partner_rows = rows(partners.sort_values(partner_keys)[['iso3','year','trade_flow','partner_iso3','value']])
+(OUT/'partners.json.gz').write_bytes(gzip.compress(json.dumps(partner_rows,separators=(',',':'),allow_nan=False).encode(),mtime=0))
 write_json(OUT/'partner-names.json',partner_names)
+coverage.reset_index().to_csv(ROOT/'downloads'/'merchandise_partner_annual_coverage.csv',index=False)
 for flow in ['import','export']:
     g = partners[partners.trade_flow.eq(flow)].copy()
     total = g.groupby(['iso3','year']).value.sum()
     chn = g[g.partner_iso3.eq('CHN')].groupby(['iso3','year']).value.sum().reindex(total.index,fill_value=0)
     frame = (100*chn/total).rename('value').reset_index()
     if flow == 'export':
-        add_series(f'baci.{flow}.china.share',f'China share of merchandise {flow}s','中国占商品出口比重','partners','% of merchandise '+flow+'s','baci',frame,note='China bilateral merchandise value / all recorded bilateral merchandise value.',frequency='benchmark')
+        add_series(f'baci.{flow}.china.share',f'China share of merchandise {flow}s','中国占商品出口比重','partners','% of merchandise '+flow+'s','baci',frame,note='China bilateral merchandise value / all recorded bilateral merchandise value.')
+    else:
+        for iso, year in total.index:
+            annual_china = dict(SERIES['baci.import.china.value'][iso])[year]
+            assert np.isclose(chn.loc[(iso,year)],annual_china,rtol=1e-9,atol=1e-3), 'China partner/product mismatch'
     g['share'] = g.value/g.set_index(['iso3','year']).index.map(total)
     hhi = g.assign(value=g.share**2).groupby(['iso3','year']).value.sum().rename('value').reset_index()
-    add_series(f'baci.{flow}.partner.hhi',f'{flow.capitalize()} partner concentration (HHI)','商品'+('进口' if flow=='import' else '出口')+'伙伴集中度（HHI）','partners','index (0-1)','baci',hhi,note='Sum of squared partner shares, using all recorded bilateral partners. Ranges from 0 to 1.',frequency='benchmark')
+    add_series(f'baci.{flow}.partner.hhi',f'{flow.capitalize()} partner concentration (HHI)','商品'+('进口' if flow=='import' else '出口')+'伙伴集中度（HHI）','partners','index (0-1)','baci',hhi,note='Sum of squared partner shares, using all recorded bilateral partners. Ranges from 0 to 1.')
+annual_manifest_path = ROOT/'downloads'/MANIFEST_FILE
+annual_manifest = json.loads(annual_manifest_path.read_text(encoding='utf-8'))
+annual_manifest.update({'partner_file':partner_file,'partner_coverage':'Annual 2000-2024, all 20 countries, both directions and all recorded partners.',
+                        'partner_records':len(partners),'partner_country_year_flows':len(coverage)})
+annual_manifest['sha256'][partner_file] = hashlib.sha256((IN/partner_file).read_bytes()).hexdigest()
+write_json(annual_manifest_path,annual_manifest)
+print(f'Prepared annual partners: {len(partners):,} records, {len(coverage):,} country-year-flows',flush=True)
 
 bits = pd.read_csv(IN/'imf_bits_country_year_category.csv')
 bits['value'] = bits.value_million_usd*1e6
@@ -256,7 +285,7 @@ download_dir.mkdir(exist_ok=True)
 prepared_files = [*FLOW_FILES.values(), COMPOSITION_FILE, 'alternative_imf_weo_current_account.csv',
     'alternative_un_tourism_arrivals.csv', 'alternative_unsd_manufacturing_va_share.csv', 'country_list.csv',
     'ilostat_manufacturing_employment.csv', 'imf_bits_bilateral_services.csv.gz', 'imf_bits_country_year_category.csv',
-    'merchandise_partner_benchmark.csv.gz', 'product_classification_hs92.csv',
+    partner_file, 'product_classification_hs92.csv',
     'world_bank_country_year_panel.csv', 'world_bank_master_long.csv.gz']
 for name in prepared_files:
     path = IN/name
@@ -274,7 +303,7 @@ for name in ['master_variable_inventory.csv','country_variable_coverage.csv','so
         shutil.copyfile(path,target)
     downloads.append({'name':name,'path':'downloads/'+name,'bytes':target.stat().st_size,'sha256':hashlib.sha256(target.read_bytes()).hexdigest()})
 for name in [MANIFEST_FILE, 'light_consumer_broad_annual_2000_2024.csv', 'top_100_products_annual_2000_2024.csv.gz',
-             'baci_annual_country_year_coverage.csv', 'baci_annual_coverage_notes.txt']:
+             'baci_annual_country_year_coverage.csv', 'baci_annual_coverage_notes.txt', 'merchandise_partner_annual_coverage.csv']:
     target = download_dir/name
     downloads.append({'name':name,'path':'downloads/'+name,'bytes':target.stat().st_size,'sha256':hashlib.sha256(target.read_bytes()).hexdigest()})
 # Original source tables stay available; the website's calculations use the normalized series.
@@ -286,6 +315,21 @@ catalog = {'version':'2026-10-16','sampleSize':20,'countries':[{'id':i,'name':n,
     'topProductColumns':['year','hs_level','rank','code','value_usd','share_merchandise_pct'],
     'productMetadataColumns':['description','stage','technology','broad_light_consumer'],
     'servicePartnerColumns':['year','flow','category','partner','value_usd','source','is_world_total'],
-    'benchmarkYears':config.BACI_YEARS,'goodsYears':YEARS,'downloads':downloads,'counts':counts}
+    'goodsYears':YEARS,'partnerYears':YEARS,'downloads':downloads,'counts':counts}
+if args.private_catalog:
+    private_path = args.private_catalog.resolve()
+    if private_path.is_relative_to(ROOT.resolve()):
+        raise ValueError('The private bilingual catalog must remain outside the public repository')
+    write_json(private_path,catalog)
+def english_metadata(value):
+    if isinstance(value,dict):
+        return {key:english_metadata(item) for key,item in value.items() if key!='zh'}
+    if isinstance(value,list):
+        return [english_metadata(item) for item in value]
+    return value
+catalog = english_metadata(catalog)
+catalog['language'] = 'en'
+for classification in ['stage','technology']:
+    catalog['categories'][classification] = {name:name for name in catalog['categories'][classification]}
 write_json(OUT/'catalog.json',catalog)
 print(json.dumps({'indicators':len(INDICATORS),'observations':sum(m['n'] for m in INDICATORS),'products':product_count,'counts':counts},ensure_ascii=False),flush=True)

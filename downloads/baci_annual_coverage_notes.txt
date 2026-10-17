@@ -30,12 +30,15 @@ Top-products table: up to 100 products per country/year/flow/HS level (2,4,6),
 ranked by current USD, ties broken by HS code. Each level is a separate ranking.
 Shares use ALL merchandise, not just the top 100. Do not add levels together.
 
-China-origin imports are annual, from product-level china_v. Complete all-partner
-totals still cover only 2000,2005,2010,2015,2019,2023. Exports to China and partner
-concentration therefore remain benchmark series. Services remain 2000-2023.
+Merchandise partner data are annual 2000-2024: 149,043 records, all 20 countries,
+both directions and all recorded partners. All 1,000 country/year/flow groups are
+present. Partner sums reconcile with annual product totals, including China-origin
+imports from product-level china_v. Exports to China and partner concentration are
+also annual. Historical territory definitions follow the source; display names
+use each partner code's latest recorded name. Services remain 2000-2023.
 
 The annual manifest omits the supplied local computer path but retains release,
-years and countries, adds definitions and SHA256 hashes of the three source files.
+years and countries, adds definitions and SHA256 hashes of the four source files.
 Older master inventory and coverage tables document the original snapshot; this
-annual manifest and annual coverage CSV supersede their BACI goods-year coverage.
-All other macro, services, FDI and employment source definitions are unchanged.
+annual manifest and annual goods/partner coverage CSVs supersede their BACI coverage.
+Other macro, services, FDI and employment source definitions are unchanged.

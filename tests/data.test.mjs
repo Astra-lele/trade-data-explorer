@@ -9,7 +9,7 @@ globalThis.fetch = async url => {
   catch { return {ok:false, status:404}; }
 };
 await D.initialize();
-const close = (a,b) => assert.ok(Math.abs(a-b) <= Math.max(1,Math.abs(b))*1e-9, `${a} != ${b}`);
+const close = (a,b) => {assert.ok(Number.isFinite(a)&&Number.isFinite(b));assert.ok(Math.abs(a-b) <= Math.max(1,Math.abs(b))*1e-9, `${a} != ${b}`);};
 
 test('20 countries, 8 topics, unique indicators and sorted finite observations', () => {
   assert.equal(D.catalog.countries.length,20);
@@ -113,7 +113,58 @@ test('broad light-consumer series and China-origin imports use the annual produc
     }
   }
   assert.equal(D.describe({type:'partner',flow:'import',partner:'CHN',measure:'value'}).frequency,'annual');
-  assert.equal(D.describe({type:'partner',flow:'export',partner:'CHN',measure:'value'}).frequency,'benchmark');
+  assert.equal(D.describe({type:'partner',flow:'export',partner:'CHN',measure:'value'}).frequency,'annual');
+});
+
+test('annual partners cover 1000 groups and reconcile with products, China and HHI',async()=>{
+  const rows=await D.readData('partners.json.gz');
+  assert.equal(rows.length,149043);
+  assert.equal(D.catalog.counts.goods_partner_rows,rows.length);
+  assert.deepEqual(D.catalog.partnerYears,D.catalog.goodsYears);
+  const groups=new Map(),seen=new Set();
+  for(const [iso,y,flow,partner,value]of rows){
+    const unique=JSON.stringify([iso,y,flow,partner]);assert.ok(!seen.has(unique));seen.add(unique);
+    const key=JSON.stringify([iso,y,flow]);const group=groups.get(key)||[];
+    group.push({partner,value});groups.set(key,group);
+    assert.ok(value>=0&&Number.isFinite(value));assert.ok(D.partnerNames[partner]);
+  }
+  assert.equal(groups.size,1000);
+  for(const [key,items]of groups){
+    const [iso,year,flow]=JSON.parse(key),total=items.reduce((s,r)=>s+r.value,0);
+    close(total,D.goodsTotals[iso][flow][year]);
+    close(D.at(D.series[`baci.${flow}.partner.hhi`][iso],year),items.reduce((s,r)=>s+(r.value/total)**2,0));
+    const china=items.find(r=>r.partner==='CHN')?.value||0;
+    close(D.at(D.series[`baci.${flow}.china.share`][iso],year),100*china/total);
+    const comp=await D.getComposition('partners',iso,year,flow);
+    close(comp.sum,total);close(comp.coverage,100);
+    close(D.compositionValues(comp,'share',10).reduce((s,r)=>s+r.value,0),100);
+  }
+  for(const flow of ['import','export'])for(const partner of ['USA','CHN','DEU']){
+    const spec={type:'partner',flow,partner,measure:'share'};
+    const values=await D.getSeries(spec,['KEN']);
+    for(const year of D.catalog.partnerYears){
+      const value=groups.get(JSON.stringify(['KEN',year,flow])).find(r=>r.partner===partner)?.value;
+      const actual=D.at(values.KEN,year);
+      if(value===undefined)assert.equal(actual,null);else close(actual,100*value/D.goodsTotals.KEN[flow][year]);
+    }
+  }
+});
+
+test('public interface and metadata contain English only and locale cannot be switched',async()=>{
+  const locale=await import('../src/i18n.js');
+  globalThis.document={documentElement:{lang:'zh-CN'}};
+  locale.setLanguage('zh');assert.equal(locale.language,'en');assert.equal(document.documentElement.lang,'en');
+  assert.equal(locale.label({name:'English',zh:'Chinese'}),'English');
+  delete globalThis.document;
+  const names=await fs.readdir(new URL('../src/',import.meta.url));
+  for(const name of names.filter(n=>n.endsWith('.js'))){
+    const content=await fs.readFile(new URL('../src/'+name,import.meta.url),'utf8');
+    assert.equal(/\p{Script=Han}/u.test(content),false,name);
+  }
+  assert.equal(/\p{Script=Han}/u.test(JSON.stringify(D.catalog)),false);
+  const html=await fs.readFile(new URL('../index.html',import.meta.url),'utf8');
+  assert.equal(html.includes('language-toggle'),false);
+  assert.equal(D.catalog.language,'en');
 });
 
 test('annual HS2/4/6 rankings agree with independently aggregated product records', async()=>{

@@ -1,5 +1,5 @@
-import {t,label,unitLabel,num,compact} from './i18n.js';
-import {countryById,isNumber} from './data.js';
+import {t,label,unitLabel,num,compact} from './i18n.js?v=partners-en-20261016';
+import {countryById,isNumber} from './data.js?v=partners-en-20261016';
 export const COLORS=['#197457','#377fa7','#ce784d','#8d6b99','#72904e','#ba5266','#4a9d9e','#9b823e','#566c9f','#9c6f5c','#4a9673','#598bba','#cf9852','#a98db8','#92a85f','#cf7489','#6caeaa','#b79f59','#8291b5','#b08c78'];
 const instances=[];
 export const esc=s=>String(s??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));

@@ -20,7 +20,8 @@ for(const [topic,view]of [['composition','composition'],['products','trend'],['p
   checks.push({name:topic+'-'+view,charts:await page.locator('.chart svg').count(),rows:await page.evaluate(()=>window.tradeExplorer.getRows().length),empty:await page.locator('#results .empty-state').allTextContents()});
 }
 await page.evaluate(async()=>window.tradeExplorer.setState({topic:'workbench',view:'trend',language:'zh'}));
-await page.screenshot({path:path.join(out,'workbench-zh.png'),fullPage:true});
+checks.push({name:'english-only',lang:await page.locator('html').getAttribute('lang'),switches:await page.locator('#language-toggle').count()});
+await page.screenshot({path:path.join(out,'workbench-en.png'),fullPage:true});
 await page.setViewportSize({width:390,height:844});
 await page.screenshot({path:path.join(out,'mobile.png'),fullPage:true});
 checks.push({name:'mobile-overflow',width:await page.evaluate(()=>document.documentElement.scrollWidth),viewport:390});
